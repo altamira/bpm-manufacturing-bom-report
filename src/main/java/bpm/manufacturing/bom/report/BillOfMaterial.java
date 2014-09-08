@@ -24,6 +24,9 @@ public class BillOfMaterial {
 		col.column("Item",       "item",      type.stringType()),
 		col.column("Quantity",   "quantity",  type.integerType()),
 		col.column("Unit price", "unitprice", type.bigDecimalType()))
+
+		// ADD REPORT HEADER COMPANY LOGO
+		// this.getClass().getResourceAsStream("/report-header-logo.png");
 		
 		//SET THE PAGE HEADERS
 		.pageHeader(cmp.text ("ALTAMIRA Indústria Metalúrgica Ltda.").setStyle(boldCenteredStyle))

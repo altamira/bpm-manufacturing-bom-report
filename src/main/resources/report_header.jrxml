@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Request" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8509fc6a-dd2f-4220-80a6-6e19bd1b6568">
+	<property name="ireport.zoom" value="1.9487171000000103"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="border_tf" mode="Opaque" backcolor="#FFFFFF" fontName="Times New Roman" fontSize="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{arrivalDate}==null]]></conditionExpression>
+			<style mode="Transparent" backcolor="#FFFFFF">
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+			</style>
+		</conditionalStyle>
+	</style>
+	<parameter name="ORDER_ID" class="java.math.BigDecimal"/>
+	<parameter name="COMPANY_LOGO" class="java.lang.Object"/>
+	<parameter name="START_DATE" class="java.util.Date"/>
+	<parameter name="END_DATE" class="java.util.Date"/>
+	<parameter name="USERNAME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="555" height="60" uuid="c2bf5f72-fdee-4b24-b977-2c710dc4629d"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<image hAlign="Center" vAlign="Middle">
+					<reportElement x="2" y="11" width="150" height="38" uuid="40b0c583-5cd5-4004-b917-eb30a44f63b9"/>
+					<imageExpression><![CDATA[$P{COMPANY_LOGO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="154" y="4" width="264" height="13" uuid="f3ac4e60-9d6c-40c8-b924-56c6b0b028a8"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ALTAMIRA Indústria Metalúrgica Ltda.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="154" y="16" width="264" height="34" uuid="73381c94-ac96-402d-a67e-4d5b1c53b40f"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+						<font fontName="Times New Roman" size="8" isBold="false" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Rua Ganges, 528 - Vila Nova Manchester
+03445-030 - São Paulo - SP   Fone: (11) 2095-2855   Fax: (11) 2095-2865
+CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="502" y="4" width="49" height="13" uuid="69c5648e-8556-4d81-83fc-1963bb5ff304"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy")).format(new Date())]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="470" y="4" width="29" height="13" uuid="20b6bc88-a38a-4f94-8f37-47aebc67f923"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Data]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="470" y="17" width="29" height="13" uuid="4f08a1d6-edb1-4cfb-ae6f-ff114cf37ea6"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Hora]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="502" y="17" width="49" height="13" uuid="407e3ad8-2554-466c-a243-6660c664b556"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[(new SimpleDateFormat("HH:mm:ss")).format(new Date())]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="470" y="30" width="29" height="13" uuid="095e41d6-d579-46fd-aeda-630ccd0e0f66"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Página]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="503" y="31" width="18" height="12" uuid="764771c6-aff5-4f68-8a8c-93d14897f17f"/>
+					<textElement textAlignment="Left">
+						<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="522" y="31" width="12" height="12" uuid="52b077bd-e9c5-4792-a581-66e7acb958c9"/>
+					<textElement>
+						<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="503" y="44" width="49" height="13" uuid="ef51f5f3-2b8a-40a7-b009-7a5039e36e51"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{USERNAME}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="154" y="64" width="264" height="14" uuid="63d5d2ea-10dc-40b9-98b1-c0f143c5b1d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Material]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

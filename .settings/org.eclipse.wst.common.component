@@ -4,6 +4,15 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="dynamicreports-core-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dynamicreports-core/dynamicreports-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dynamicreports-adhoc-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dynamicreports-adhoc/dynamicreports-adhoc">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dynamicreports-googlecharts-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dynamicreports-googlecharts/dynamicreports-googlecharts">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="bpm-manufacturing-bom-report"/>
         <property name="java-output-path" value="/bpm-manufacturing-bom-report/target/classes"/>
     </wb-module>
