@@ -29,6 +29,7 @@ public class Reports {
     public  void getIt(@Context HttpServletRequest req, @Context HttpServletResponse resp) throws ServletException, IOException {
     	
     	BillOfMaterial report = new BillOfMaterial();
+    	resp.setContentType("application/pdf");
     	OutputStream out = resp.getOutputStream();
     	try {
 			report.build().toPdf(out);
