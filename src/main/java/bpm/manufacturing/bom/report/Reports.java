@@ -47,7 +47,8 @@ public class Reports {
     	String path = resource.getPath();
     	path = path.replace("WEB-INF/classes/", "");
     	String sourceFileName = "reports/bom-by-order.jasper";
-    	path = path + sourceFileName; 
+    	String reportPath = path + sourceFileName; 
+    	String logoPath = path + "images/report-header-logo.png";
     	
     	BomDataBeanList DataBeanList = new BomDataBeanList();
     	ArrayList dataList = DataBeanList.getDataBeanList();
@@ -59,7 +60,7 @@ public class Reports {
     	parameters.put("Customer", "ALIANÇA LATINA INDUSTRIA E COMERCIO LTDA");
     	parameters.put("Representative", "MOVITTEC IND.E COM.LTDA");
     	parameters.put("OrderID", "12345");
-    	
+    	parameters.put("ImgUrl", logoPath);
     	parameters.put("DateRequest", "22/08/2014");
     	parameters.put("DeliveryTime", "41/2014 (06/10/2014 a 10/10/2014)");
     	parameters.put("NoBudget", "00087234");
@@ -67,7 +68,7 @@ public class Reports {
     	parameters.put("Finish", "ACABAMENTO ESPECIAL");
     	JasperPrint jasperPrint;
     	try {
-    		jasperPrint = JasperFillManager.fillReport(path, parameters, beanColDataSource);
+    		jasperPrint = JasperFillManager.fillReport(reportPath, parameters, beanColDataSource);
     		JRExporter exporter = new JRPdfExporter();
     		ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
     		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
