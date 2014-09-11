@@ -52,19 +52,9 @@
 		<!-- uncomment this to get JSON support <dependency> <groupId>org.glassfish.jersey.media</groupId> 
 			<artifactId>jersey-media-moxy</artifactId> </dependency> -->
 		<dependency>
-			<groupId>net.sourceforge.dynamicreports</groupId>
-			<artifactId>dynamicreports-core</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.dynamicreports</groupId>
-			<artifactId>dynamicreports-adhoc</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.dynamicreports</groupId>
-			<artifactId>dynamicreports-googlecharts</artifactId>
-			<version>3.2.1</version>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>5.6.1</version>
 		</dependency>
 	</dependencies>
 	<properties>
