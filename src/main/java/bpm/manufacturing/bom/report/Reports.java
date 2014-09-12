@@ -27,7 +27,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 /**
  * Root resource (exposed at "reports" path)
  */
-@SuppressWarnings("deprecation")
+
 @Path("reports")
 public class Reports {
 
@@ -37,7 +37,7 @@ public class Reports {
      * @return 
      *
      */
-    @SuppressWarnings("unchecked")
+
 	@GET
     @Produces("application/pdf") 
     public  void getIt(@Context HttpServletRequest req, @Context HttpServletResponse resp) throws ServletException, IOException {
@@ -51,10 +51,10 @@ public class Reports {
     	String logoPath = path + "images/report-header-logo.png";
     	
     	BomDataBeanList DataBeanList = new BomDataBeanList();
-    	ArrayList dataList = DataBeanList.getDataBeanList();
+    	ArrayList<BomDataBean> dataList = DataBeanList.getDataBeanList();
     	JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
 
-    	Map parameters = new HashMap();
+    	Map<String, Object> parameters = new HashMap<String, Object>();
     	parameters.put("Title", "Ordem de Serviço (Engenharia)");
     	parameters.put("UserName", "MASTER");
     	parameters.put("Customer", "ALIANÇA LATINA INDUSTRIA E COMERCIO LTDA");
