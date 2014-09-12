@@ -1,20 +1,66 @@
 package bpm.manufacturing.bom.report;
 
+
+
 public class BomDataBean {
 	
-	private String orderId;
-	private String customerName;
+	private String itemNo;
+	private String deliveryDate;
+	private String description;
 	
-	public String getOrderId() {
-		return orderId;
+	private int bomQty;
+	private String bomDescription;
+	private String bomColor;
+	private int bomWeight;
+	private int bomWeightTotal;
+	
+	public int getBomQty() {
+		return bomQty;
 	}
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public int getBomWeightTotal() {
+		return bomWeightTotal;
 	}
-	public String getCustomerName() {
-		return customerName;
+	public void setBomWeightTotal(int bomWeightTotal) {
+		this.bomWeightTotal = bomWeightTotal;
 	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setBomQty(int bomQty) {
+		this.bomQty = bomQty;
 	}
+	public String getBomDescription() {
+		return bomDescription;
+	}
+	public void setBomDescription(String bomDescription) {
+		this.bomDescription = bomDescription;
+	}
+	public String getBomColor() {
+		return bomColor;
+	}
+	public void setBomColor(String bomColor) {
+		this.bomColor = bomColor;
+	}
+	public int getBomWeight() {
+		return bomWeight;
+	}
+	public void setBomWeight(int bomWeight) {
+		this.bomWeight = bomWeight;
+	}
+	public String getItemNo() {
+		return itemNo;
+	}
+	public void setItemNo(String itemNo) {
+		this.itemNo = itemNo;
+	}
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 }
