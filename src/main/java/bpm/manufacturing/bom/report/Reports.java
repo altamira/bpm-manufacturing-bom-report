@@ -13,8 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
@@ -37,37 +48,104 @@ public class Reports {
      * @return 
      *
      */
-
-	@GET
+	@GET @Path("/materials/{orderId}")
     @Produces("application/pdf") 
-    public  void getIt(@Context HttpServletRequest req, @Context HttpServletResponse resp) throws ServletException, IOException {
+    public  void getIt(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("orderId") String paramOrderId) throws ServletException, IOException {
+		
+		//CALCULATE THE PATH OF THE JASPER FILE
+		URL resource = getClass().getResource("/");
+		String path = resource.getPath();
+		path = path.replace("WEB-INF/classes/", "");
+		String sourceFileName = "reports/bom-by-order.jasper";
+		String reportPath = path + sourceFileName; 
+		String logoPath = path + "images/report-header-logo.png";
     	
-    	//CALCULATE THE PATH OF THE JASPER FILE
-    	URL resource = getClass().getResource("/");
-    	String path = resource.getPath();
-    	path = path.replace("WEB-INF/classes/", "");
-    	String sourceFileName = "reports/bom-by-order.jasper";
-    	String reportPath = path + sourceFileName; 
-    	String logoPath = path + "images/report-header-logo.png";
     	
-    	BomDataBeanList DataBeanList = new BomDataBeanList();
-    	ArrayList<BomDataBean> dataList = DataBeanList.getDataBeanList();
-    	JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
-
+    	ArrayList<BomDataBean> dataList = new ArrayList<BomDataBean>();
     	Map<String, Object> parameters = new HashMap<String, Object>();
-    	parameters.put("Title", "Ordem de Serviço (Engenharia)");
-    	parameters.put("UserName", "MASTER");
-    	parameters.put("Customer", "ALIANÇA LATINA INDUSTRIA E COMERCIO LTDA");
-    	parameters.put("Representative", "MOVITTEC IND.E COM.LTDA");
-    	parameters.put("OrderID", "12345");
-    	parameters.put("ImgUrl", logoPath);
-    	parameters.put("DateRequest", "22/08/2014");
-    	parameters.put("DeliveryTime", "41/2014 (06/10/2014 a 10/10/2014)");
-    	parameters.put("NoBudget", "00087234");
-    	parameters.put("NoProject", "00000");
-    	parameters.put("Finish", "ACABAMENTO ESPECIAL");
     	JasperPrint jasperPrint;
+		
+		//GET THE REPORT DATA FROM API
+		try {
+			Client client = ClientBuilder.newClient();
+			WebTarget webTarget = client.target("http://esb.altamira.com.br:8081/manufacturing/bom/checklist/");
+			String responseEntity = webTarget.path(paramOrderId).request(MediaType.APPLICATION_JSON).get(String.class);
+			System.out.println(responseEntity);
+			JSONParser parser=new JSONParser();
+			
+			//PARSE JSON DATA- STRING TO JSON OBJECT
+			try {
+				Object responseObj = parser.parse(responseEntity);
+				JSONObject responseJsonObj = (JSONObject)responseObj;
+				JSONObject orderJsonObj = (JSONObject)responseJsonObj.get("order");
+				String orderNumber = (String) orderJsonObj.get("number");
+				String customer = (String) orderJsonObj.get("customer");
+				String salesRepresentative = (String) orderJsonObj.get("sales_representative");
+				String orderDate = (String) orderJsonObj.get("order_date");
+				String deliveryDate = (String) orderJsonObj.get("delivery_date");
+				String quotation = (String) orderJsonObj.get("quotation");
+				// TODO NEED TO CHECK WHERE TO USE THIS COMMENT VALUE
+				String comment = (String) orderJsonObj.get("comment");
+		        
+				//SET THE PARAMETERS FOR JASPER REPORT
+		        parameters.put("Title", "Lista de Material - " + orderNumber);
+		     	parameters.put("UserName", "MASTER");
+		     	parameters.put("Customer", customer);
+		     	parameters.put("Representative", salesRepresentative);
+		     	parameters.put("OrderID", orderNumber);
+		     	parameters.put("ImgUrl", logoPath);
+		     	parameters.put("DateRequest", orderDate);
+		     	parameters.put("DeliveryTime", deliveryDate);
+		     	parameters.put("NoBudget", quotation);
+		     	// TODO REMOVE THE HARD-CODE VALUE FOR NoProject
+		     	parameters.put("NoProject", "00000");
+		     	parameters.put("Finish", "ACABAMENTO ESPECIAL");
+		     	parameters.put("FooterText1", "￼Observações DO PEDIDO");
+		     	parameters.put("FooterText2", "￼ENTREGAR NA OBRA: RUADAS PALMEIRAS, 4587 - LAPA -SP");
+		     	
+		        JSONArray itemJsonArray = (JSONArray)orderJsonObj.get("item");
+		        
+		        for(int i = 0; i < itemJsonArray.size(); i++) {
+					Object itemObject = itemJsonArray.get(i);
+					JSONObject itemJsonObj = (JSONObject)itemObject;
+					String itemNo = (String) itemJsonObj.get("item");
+					String itemDescription = (String) itemJsonObj.get("description");
+					JSONArray prodJsonArray = (JSONArray)itemJsonObj.get("product");
+		            for(int j = 0; j < prodJsonArray.size(); j++) {
+						Object prodObject = prodJsonArray.get(j);
+						JSONObject prodJsonObj = (JSONObject)prodObject;
+						String weight = (String) prodJsonObj.get("weight");
+						String color = (String) prodJsonObj.get("color");
+						String prodDescription = (String) prodJsonObj.get("description");
+						String quantity = (String) prodJsonObj.get("quantity");
+						String prodCode = (String) prodJsonObj.get("code");
+
+						//CREATE THE OBJECT
+						BomDataBean dataBean = new BomDataBean();
+						dataBean.setItemNo(itemNo);
+						dataBean.setItemDescription(itemDescription);
+						dataBean.setProdQty(quantity);
+						dataBean.setProdDescription(prodDescription);
+						dataBean.setProdColor(color);
+						dataBean.setProdWeight(weight);
+						dataBean.setProdWeightTotal(weight);
+
+						//ADD THE OBJECT TO DATALIST
+						dataList.add(dataBean);		               
+		            }
+		        }
+			} catch(ParseException pe) {
+				System.out.println("position: " + pe.getPosition());
+				System.out.println(pe);
+			}
+
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
+		
+		//PRINT THE PDF REPORT
     	try {
+    		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
     		jasperPrint = JasperFillManager.fillReport(reportPath, parameters, beanColDataSource);
     		JRExporter exporter = new JRPdfExporter();
     		ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
