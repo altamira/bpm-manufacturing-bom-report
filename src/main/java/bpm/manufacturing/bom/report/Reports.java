@@ -119,11 +119,69 @@ public class Reports {
 		     	parameters.put("Finish", "ACABAMENTO ESPECIAL");
 		     	parameters.put("FooterText1", "￼Observações DO PEDIDO");
 		     	parameters.put("FooterText2", "￼ENTREGAR NA OBRA: RUADAS PALMEIRAS, 4587 - LAPA -SP");
-		     	
-		        JSONArray itemJsonArray = (JSONArray)orderJsonObj.get("item");
-		        
-		        for(int i = 0; i < itemJsonArray.size(); i++) {
-					Object itemObject = itemJsonArray.get(i);
+		     	Object itemJsonObject = orderJsonObj.get("item");
+		     	if (itemJsonObject instanceof JSONArray) {
+		     		JSONArray itemJsonArray = (JSONArray)orderJsonObj.get("item");
+		     		for(int i = 0; i < itemJsonArray.size(); i++) {
+						Object itemObject = itemJsonArray.get(i);
+						JSONObject itemJsonObj = (JSONObject)itemObject;
+						String itemNo = (String) itemJsonObj.get("item");
+						String itemDescription = (String) itemJsonObj.get("description");
+						
+						Object prodJsonObject = itemJsonObj.get("product");
+						if (prodJsonObject instanceof JSONArray) {
+							JSONArray prodJsonArray = (JSONArray)itemJsonObj.get("product");
+				            for(int j = 0; j < prodJsonArray.size(); j++) {
+								Object prodObject = prodJsonArray.get(j);
+								JSONObject prodJsonObj = (JSONObject)prodObject;
+								//String weight = (String) prodJsonObj.get("weight");
+								Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
+								String color = (String) prodJsonObj.get("color");
+								String prodDescription = (String) prodJsonObj.get("description");
+								Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
+								String prodCode = (String) prodJsonObj.get("code");
+	
+								//CREATE THE OBJECT
+								BomDataBean dataBean = new BomDataBean();
+								dataBean.setItemNo(itemNo);
+								dataBean.setItemDescription(itemDescription);
+								dataBean.setProdQty(quantity);
+								dataBean.setProdDescription(prodDescription);
+								dataBean.setProdColor(color);
+								dataBean.setProdWeight(weightTotal/quantity);
+								dataBean.setProdWeightTotal(weightTotal);
+	
+								//ADD THE OBJECT TO DATALIST
+								dataList.add(dataBean);		               
+				            }
+						}
+						else {
+							Object prodObject = prodJsonObject;
+							JSONObject prodJsonObj = (JSONObject)prodObject;
+							//String weight = (String) prodJsonObj.get("weight");
+							Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
+							String color = (String) prodJsonObj.get("color");
+							String prodDescription = (String) prodJsonObj.get("description");
+							Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
+							String prodCode = (String) prodJsonObj.get("code");
+
+							//CREATE THE OBJECT
+							BomDataBean dataBean = new BomDataBean();
+							dataBean.setItemNo(itemNo);
+							dataBean.setItemDescription(itemDescription);
+							dataBean.setProdQty(quantity);
+							dataBean.setProdDescription(prodDescription);
+							dataBean.setProdColor(color);
+							dataBean.setProdWeight(weightTotal/quantity);
+							dataBean.setProdWeightTotal(weightTotal);
+
+							//ADD THE OBJECT TO DATALIST
+							dataList.add(dataBean);		
+						}
+			        }
+		     	}
+		     	else {
+		     		Object itemObject = itemJsonObject;
 					JSONObject itemJsonObj = (JSONObject)itemObject;
 					String itemNo = (String) itemJsonObj.get("item");
 					String itemDescription = (String) itemJsonObj.get("description");
@@ -151,7 +209,8 @@ public class Reports {
 						//ADD THE OBJECT TO DATALIST
 						dataList.add(dataBean);		               
 		            }
-		        }
+		        } 
+		        
 			} catch(ParseException pe) {
 				System.out.println("position: " + pe.getPosition());
 				System.out.println(pe);
