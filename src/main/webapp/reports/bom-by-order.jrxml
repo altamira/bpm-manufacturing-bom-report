@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-09-16T19:56:43 -->
+<!-- 2014-09-16T23:52:48 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -177,7 +177,7 @@
 	<field name="itemDescription" class="java.lang.String">
 		<fieldDescription><![CDATA[itemDescription]]></fieldDescription>
 	</field>
-	<field name="prodQty" class="java.lang.String">
+	<field name="prodQty" class="java.lang.Float">
 		<fieldDescription><![CDATA[prodQty]]></fieldDescription>
 	</field>
 	<field name="prodDescription" class="java.lang.String">
@@ -186,10 +186,10 @@
 	<field name="prodColor" class="java.lang.String">
 		<fieldDescription><![CDATA[prodColor]]></fieldDescription>
 	</field>
-	<field name="prodWeight" class="java.lang.String">
+	<field name="prodWeight" class="java.lang.Float">
 		<fieldDescription><![CDATA[prodWeight]]></fieldDescription>
 	</field>
-	<field name="prodWeightTotal" class="java.lang.String">
+	<field name="prodWeightTotal" class="java.lang.Float">
 		<fieldDescription><![CDATA[prodWeightTotal]]></fieldDescription>
 	</field>
 	<sortField name="itemNo"/>
