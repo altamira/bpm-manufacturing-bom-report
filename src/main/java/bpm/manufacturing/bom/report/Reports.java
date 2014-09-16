@@ -3,7 +3,9 @@ package bpm.manufacturing.bom.report;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,10 +84,25 @@ public class Reports {
 				String customer = (String) orderJsonObj.get("customer");
 				String salesRepresentative = (String) orderJsonObj.get("sales_representative");
 				String orderDate = (String) orderJsonObj.get("order_date");
+				orderDate = orderDate.replace(" ", "");
 				String deliveryDate = (String) orderJsonObj.get("delivery_date");
+				deliveryDate = deliveryDate.replace(" ", "");
 				String quotation = (String) orderJsonObj.get("quotation");
 				// TODO NEED TO CHECK WHERE TO USE THIS COMMENT VALUE
 				String comment = (String) orderJsonObj.get("comment");
+				
+				//FORMATING ORDER DATE
+				SimpleDateFormat dateFormatter = new SimpleDateFormat("MMMddyyyyHH:mma");
+				SimpleDateFormat displayFormatter = new SimpleDateFormat("dd/MM/yyyy");
+				Date orderDateParse = dateFormatter.parse(orderDate);
+				String orderDateDisplay = displayFormatter.format(orderDateParse);
+				
+				//FORMATING DELIVERT DATE
+				SimpleDateFormat deliveryDateFormatter = new SimpleDateFormat("w/yyyy");
+				Date deliveryDateParse = dateFormatter.parse(deliveryDate);
+				String deliveryDateDisplay = deliveryDateFormatter.format(deliveryDateParse);
+				
+
 		        
 				//SET THE PARAMETERS FOR JASPER REPORT
 		        parameters.put("Title", "Lista de Material - " + orderNumber);
@@ -94,8 +111,8 @@ public class Reports {
 		     	parameters.put("Representative", salesRepresentative);
 		     	parameters.put("OrderID", orderNumber);
 		     	parameters.put("ImgUrl", logoPath);
-		     	parameters.put("DateRequest", orderDate);
-		     	parameters.put("DeliveryTime", deliveryDate);
+		     	parameters.put("DateRequest", orderDateDisplay);
+		     	parameters.put("DeliveryTime", deliveryDateDisplay);
 		     	parameters.put("NoBudget", quotation);
 		     	// TODO REMOVE THE HARD-CODE VALUE FOR NoProject
 		     	parameters.put("NoProject", "00000");
