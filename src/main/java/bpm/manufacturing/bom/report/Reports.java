@@ -131,10 +131,11 @@ public class Reports {
 		            for(int j = 0; j < prodJsonArray.size(); j++) {
 						Object prodObject = prodJsonArray.get(j);
 						JSONObject prodJsonObj = (JSONObject)prodObject;
-						String weight = (String) prodJsonObj.get("weight");
+						//String weight = (String) prodJsonObj.get("weight");
+						Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
 						String color = (String) prodJsonObj.get("color");
 						String prodDescription = (String) prodJsonObj.get("description");
-						String quantity = (String) prodJsonObj.get("quantity");
+						Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
 						String prodCode = (String) prodJsonObj.get("code");
 
 						//CREATE THE OBJECT
@@ -144,8 +145,8 @@ public class Reports {
 						dataBean.setProdQty(quantity);
 						dataBean.setProdDescription(prodDescription);
 						dataBean.setProdColor(color);
-						dataBean.setProdWeight(weight);
-						dataBean.setProdWeightTotal(weight);
+						dataBean.setProdWeight(weightTotal/quantity);
+						dataBean.setProdWeightTotal(weightTotal);
 
 						//ADD THE OBJECT TO DATALIST
 						dataList.add(dataBean);		               

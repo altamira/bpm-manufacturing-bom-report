@@ -6,11 +6,11 @@ public class BomDataBean {
 	
 	private String itemNo;
 	private String itemDescription;
-	private String prodQty;
+	private Float prodQty;
 	private String prodDescription;
 	private String prodColor;
-	private String prodWeight;
-	private String prodWeightTotal;
+	private Float prodWeight;
+	private Float prodWeightTotal;
 	
 	public String getItemNo() {
 		return itemNo;
@@ -24,10 +24,10 @@ public class BomDataBean {
 	public void setItemDescription(String itemDescription) {
 		this.itemDescription = itemDescription;
 	}
-	public String getProdQty() {
+	public Float getProdQty() {
 		return prodQty;
 	}
-	public void setProdQty(String quantity) {
+	public void setProdQty(Float quantity) {
 		this.prodQty = quantity;
 	}
 	public String getProdDescription() {
@@ -42,16 +42,16 @@ public class BomDataBean {
 	public void setProdColor(String prodColor) {
 		this.prodColor = prodColor;
 	}
-	public String getProdWeight() {
+	public Float getProdWeight() {
 		return prodWeight;
 	}
-	public void setProdWeight(String weight) {
+	public void setProdWeight(Float weight) {
 		this.prodWeight = weight;
 	}
-	public String getProdWeightTotal() {
+	public Float getProdWeightTotal() {
 		return prodWeightTotal;
 	}
-	public void setProdWeightTotal(String weight) {
+	public void setProdWeightTotal(Float weight) {
 		this.prodWeightTotal = weight;
 	}
 	
