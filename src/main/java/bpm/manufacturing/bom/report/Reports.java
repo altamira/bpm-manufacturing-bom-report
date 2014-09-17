@@ -1,14 +1,15 @@
 package bpm.manufacturing.bom.report;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +18,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -54,15 +57,23 @@ public class Reports {
     @Produces("application/pdf") 
     public  void getIt(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("orderId") String paramOrderId) throws ServletException, IOException {
 		
+		//GET THE LOGO FILE FROM RESOURCE
+		InputStream reportLogo = getClass().getResourceAsStream("/images/report-header-logo.png");
+
+		 BufferedImage imfg = null;
+		 try {
+             //InputStream in = new ByteArrayInputStream(requestReportAltamiraimage);
+             imfg = ImageIO.read(reportLogo);
+		 } catch (Exception e1) {
+             e1.printStackTrace();
+		 }
+        
 		//CALCULATE THE PATH OF THE JASPER FILE
-		URL resource = getClass().getResource("/");
-		String path = resource.getPath();
-		path = path.replace("WEB-INF/classes/", "");
-		String sourceFileName = "reports/bom-by-order.jasper";
-		String reportPath = path + sourceFileName; 
-		String logoPath = path + "images/report-header-logo.png";
-    	
-    	
+		InputStream reportStream = getClass().getResourceAsStream("/reports/bom-by-order.jasper");
+		if (reportStream == null) {
+        	//return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
+        }
+		
     	ArrayList<BomDataBean> dataList = new ArrayList<BomDataBean>();
     	Map<String, Object> parameters = new HashMap<String, Object>();
     	JasperPrint jasperPrint;
@@ -103,7 +114,7 @@ public class Reports {
 		     	parameters.put("Customer", customer);
 		     	parameters.put("Representative", salesRepresentative);
 		     	parameters.put("OrderID", orderNumber);
-		     	parameters.put("ImgUrl", logoPath);
+		     	parameters.put("LogoImage", imfg);
 		     	parameters.put("DateRequest", orderDateDisplay);
 		     	parameters.put("DeliveryTime", deliveryDateDisplay);
 		     	parameters.put("NoBudget", quotation);
@@ -111,7 +122,8 @@ public class Reports {
 		     	parameters.put("NoProject", "00000");
 		     	parameters.put("Finish", "ACABAMENTO ESPECIAL");
 		     	parameters.put("FooterText1", "￼Observações DO PEDIDO");
-		     	parameters.put("FooterText2", "￼ENTREGAR NA OBRA: RUADAS PALMEIRAS, 4587 - LAPA -SP");
+		     	parameters.put("Comment", comment);
+		     	
 		     	Object itemJsonObject = orderJsonObj.get("item");
 		     	if (itemJsonObject instanceof JSONArray) {
 		     		JSONArray itemJsonArray = (JSONArray)orderJsonObj.get("item");
@@ -242,8 +254,6 @@ public class Reports {
 					}
 		        }
 		     	parameters.put("SumTotalWeight", sumTotalWeight);
-		     	System.out.println(sumTotalWeight);
-		        
 			} catch(ParseException pe) {
 				System.out.println("position: " + pe.getPosition());
 				System.out.println(pe);
@@ -256,7 +266,7 @@ public class Reports {
 		//PRINT THE PDF REPORT
     	try {
     		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
-    		jasperPrint = JasperFillManager.fillReport(reportPath, parameters, beanColDataSource);
+    		jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
     		JRExporter exporter = new JRPdfExporter();
     		ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
     		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
