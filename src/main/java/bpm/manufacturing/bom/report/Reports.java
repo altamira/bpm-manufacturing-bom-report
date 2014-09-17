@@ -85,6 +85,7 @@ public class Reports {
 				String salesRepresentative = (String) orderJsonObj.get("sales_representative");
 				long orderTimeStamp = Long.valueOf((String)orderJsonObj.get("order_date")).longValue();
 				long deliveryTimeStamp = Long.valueOf((String)orderJsonObj.get("delivery_date")).longValue() ;
+				float sumTotalWeight = (float) 0.00;
 				
 				String quotation = (String) orderJsonObj.get("quotation");
 				// TODO NEED TO CHECK WHERE TO USE THIS COMMENT VALUE
@@ -132,6 +133,9 @@ public class Reports {
 								String prodDescription = (String) prodJsonObj.get("description");
 								Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
 								String prodCode = (String) prodJsonObj.get("code");
+								
+								//ADD TO SUM TOTAL WEIGHT
+								sumTotalWeight = sumTotalWeight + weightTotal;
 	
 								//CREATE THE OBJECT
 								BomDataBean dataBean = new BomDataBean();
@@ -156,6 +160,9 @@ public class Reports {
 							String prodDescription = (String) prodJsonObj.get("description");
 							Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
 							String prodCode = (String) prodJsonObj.get("code");
+							
+							//ADD TO SUM TOTAL WEIGHT
+							sumTotalWeight = sumTotalWeight + weightTotal;
 
 							//CREATE THE OBJECT
 							BomDataBean dataBean = new BomDataBean();
@@ -177,9 +184,38 @@ public class Reports {
 					JSONObject itemJsonObj = (JSONObject)itemObject;
 					String itemNo = (String) itemJsonObj.get("item");
 					String itemDescription = (String) itemJsonObj.get("description");
-					JSONArray prodJsonArray = (JSONArray)itemJsonObj.get("product");
-		            for(int j = 0; j < prodJsonArray.size(); j++) {
-						Object prodObject = prodJsonArray.get(j);
+					Object prodJsonObject = itemJsonObj.get("product");
+					if (prodJsonObject instanceof JSONArray) {
+						JSONArray prodJsonArray = (JSONArray)itemJsonObj.get("product");
+			            for(int j = 0; j < prodJsonArray.size(); j++) {
+							Object prodObject = prodJsonArray.get(j);
+							JSONObject prodJsonObj = (JSONObject)prodObject;
+							//String weight = (String) prodJsonObj.get("weight");
+							Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
+							String color = (String) prodJsonObj.get("color");
+							String prodDescription = (String) prodJsonObj.get("description");
+							Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
+							String prodCode = (String) prodJsonObj.get("code");
+							
+							//ADD TO SUM TOTAL WEIGHT
+							sumTotalWeight = sumTotalWeight + weightTotal;
+
+							//CREATE THE OBJECT
+							BomDataBean dataBean = new BomDataBean();
+							dataBean.setItemNo(itemNo);
+							dataBean.setItemDescription(itemDescription);
+							dataBean.setProdQty(quantity);
+							dataBean.setProdDescription(prodDescription);
+							dataBean.setProdColor(color);
+							dataBean.setProdWeight(weightTotal/quantity);
+							dataBean.setProdWeightTotal(weightTotal);
+
+							//ADD THE OBJECT TO DATALIST
+							dataList.add(dataBean);		               
+			            }
+					}
+					else {
+						Object prodObject = prodJsonObject;
 						JSONObject prodJsonObj = (JSONObject)prodObject;
 						//String weight = (String) prodJsonObj.get("weight");
 						Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
@@ -187,6 +223,9 @@ public class Reports {
 						String prodDescription = (String) prodJsonObj.get("description");
 						Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
 						String prodCode = (String) prodJsonObj.get("code");
+						
+						//ADD TO SUM TOTAL WEIGHT
+						sumTotalWeight = sumTotalWeight + weightTotal;
 
 						//CREATE THE OBJECT
 						BomDataBean dataBean = new BomDataBean();
@@ -199,9 +238,11 @@ public class Reports {
 						dataBean.setProdWeightTotal(weightTotal);
 
 						//ADD THE OBJECT TO DATALIST
-						dataList.add(dataBean);		               
-		            }
-		        } 
+						dataList.add(dataBean);		
+					}
+		        }
+		     	parameters.put("SumTotalWeight", sumTotalWeight);
+		     	System.out.println(sumTotalWeight);
 		        
 			} catch(ParseException pe) {
 				System.out.println("position: " + pe.getPosition());
