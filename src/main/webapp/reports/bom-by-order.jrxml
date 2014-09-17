@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-09-17T14:36:14 -->
+<!-- 2014-09-17T20:06:30 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -149,7 +149,6 @@
 			<![CDATA[]]>
 		</queryString>
 	</subDataset>
-	<parameter name="ImgUrl" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="Title" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
@@ -167,9 +166,14 @@
 	</parameter>
 	<parameter name="DateRequest" class="java.lang.String"/>
 	<parameter name="FooterText1" class="java.lang.String"/>
-	<parameter name="FooterText2" class="java.lang.String"/>
 	<parameter name="SumTotalWeight" class="java.lang.Float">
 		<parameterDescription><![CDATA[SumTotalWeight]]></parameterDescription>
+	</parameter>
+	<parameter name="LogoImage" class="java.awt.image.BufferedImage">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="Comment" class="java.lang.String">
+		<parameterDescription><![CDATA[Comment]]></parameterDescription>
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[]]>
@@ -446,70 +450,70 @@
 			<textField>
 				<reportElement x="499" y="46" width="49" height="13" uuid="a9ba2c0a-d9eb-40af-b49b-11babb339138"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{UserName}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="518" y="33" width="12" height="12" uuid="a75962bd-c758-443c-8a3d-8d9ef18200e6"/>
+				<reportElement x="518" y="33" width="28" height="12" uuid="a75962bd-c758-443c-8a3d-8d9ef18200e6"/>
 				<textElement>
-					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="499" y="33" width="18" height="12" uuid="270b4525-7d9c-4daa-9164-f02870137488"/>
 				<textElement textAlignment="Left">
-					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="498" y="19" width="49" height="13" uuid="20c30ad8-70fd-47ab-a930-3996d2dfeeb1"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(new SimpleDateFormat("HH:mm:ss")).format(new Date())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="498" y="6" width="49" height="13" uuid="0216e192-bbc2-4498-a105-67fe8dc62691"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy")).format(new Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="466" y="6" width="29" height="13" uuid="7b9ba715-f161-4295-b1ec-a7443dc547e6"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[Data]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="466" y="19" width="29" height="13" uuid="afc04624-cd95-4641-a22a-8e8145266863"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[Hora]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="466" y="32" width="29" height="13" uuid="0ae8a46d-0e4d-4d26-98a4-b54f75648cc7"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[Página]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="150" y="6" width="264" height="13" uuid="d41ad0e2-71f6-441a-99ca-573e64773923"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<font fontName="Times New Roman" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[ALTAMIRA Indústria Metalúrgica Ltda.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="150" y="18" width="264" height="34" uuid="3e825c43-88f8-4e9f-93f9-ef548724d196"/>
+				<reportElement x="150" y="18" width="300" height="40" uuid="3e825c43-88f8-4e9f-93f9-ef548724d196"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<font fontName="Times New Roman" size="8" isBold="false" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+					<font fontName="SansSerif" size="8" isBold="false" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[Rua Ganges, 528 - Vila Nova Manchester
 03445-030 - São Paulo - SP   Fone: (11) 2095-2855   Fax: (11) 2095-2865
@@ -527,7 +531,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 			</textField>
 			<image vAlign="Middle">
 				<reportElement x="-2" y="13" width="150" height="38" uuid="7cd87cd6-a5ee-41d7-a626-99471ceb1ad7"/>
-				<imageExpression><![CDATA[$P{ImgUrl}]]></imageExpression>
+				<imageExpression><![CDATA[$P{LogoImage}]]></imageExpression>
 			</image>
 			<line>
 				<reportElement x="-2" y="84" width="560" height="1" uuid="2219a9bf-eac8-429f-bf3b-8b2c64adb2a6">
@@ -873,7 +877,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{FooterText2}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{Comment}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
