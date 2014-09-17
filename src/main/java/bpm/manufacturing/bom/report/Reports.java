@@ -83,27 +83,19 @@ public class Reports {
 				String orderNumber = (String) orderJsonObj.get("number");
 				String customer = (String) orderJsonObj.get("customer");
 				String salesRepresentative = (String) orderJsonObj.get("sales_representative");
-				String orderDate = (String) orderJsonObj.get("order_date");
-				orderDate = orderDate.replace(" ", "");
-				String deliveryDate = (String) orderJsonObj.get("delivery_date");
-				deliveryDate = deliveryDate.replace(" ", "");
+				long orderTimeStamp = Long.valueOf((String)orderJsonObj.get("order_date")).longValue();
+				long deliveryTimeStamp = Long.valueOf((String)orderJsonObj.get("delivery_date")).longValue() ;
+				
 				String quotation = (String) orderJsonObj.get("quotation");
 				// TODO NEED TO CHECK WHERE TO USE THIS COMMENT VALUE
 				String comment = (String) orderJsonObj.get("comment");
 				
 				//FORMATING ORDER DATE
-				SimpleDateFormat dateFormatter = new SimpleDateFormat("MMMddyyyyHH:mma");
-				SimpleDateFormat displayFormatter = new SimpleDateFormat("dd/MM/yyyy");
-				Date orderDateParse = dateFormatter.parse(orderDate);
-				String orderDateDisplay = displayFormatter.format(orderDateParse);
+				String orderDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(orderTimeStamp));
 				
 				//FORMATING DELIVERT DATE
-				SimpleDateFormat deliveryDateFormatter = new SimpleDateFormat("w/yyyy");
-				Date deliveryDateParse = dateFormatter.parse(deliveryDate);
-				String deliveryDateDisplay = deliveryDateFormatter.format(deliveryDateParse);
-				
-
-		        
+				String deliveryDateDisplay = new java.text.SimpleDateFormat("w/yyyy").format(new java.util.Date(deliveryTimeStamp));
+				    
 				//SET THE PARAMETERS FOR JASPER REPORT
 		        parameters.put("Title", "Lista de Material - " + orderNumber);
 		     	parameters.put("UserName", "MASTER");
