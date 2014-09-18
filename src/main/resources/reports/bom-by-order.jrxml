@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-09-18T13:16:49 -->
+<!-- 2014-09-18T14:21:53 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -852,11 +852,11 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 		</band>
 	</detail>
 	<summary>
-		<band height="55">
+		<band height="63">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="-4" y="1" width="560" height="20" printWhenGroupChanges="ItemGroup" uuid="4f49cb0c-20e8-468b-a51e-a011ab35e96e">
+				<reportElement mode="Transparent" x="-4" y="1" width="560" height="20" printWhenGroupChanges="ItemGroup" uuid="4f49cb0c-20e8-468b-a51e-a011ab35e96e">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -895,13 +895,13 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<rectangle>
-				<reportElement mode="Transparent" x="-3" y="26" width="560" height="27" uuid="9fb71ef3-885b-465a-90f0-47babe2e03b2"/>
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="-3" y="26" width="560" height="37" uuid="9fb71ef3-885b-465a-90f0-47babe2e03b2"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="2" y="29" width="248" height="12" uuid="f6b31892-18bf-467b-b39c-e4693c162ed6">
+				<reportElement x="2" y="28" width="248" height="12" uuid="f6b31892-18bf-467b-b39c-e4693c162ed6">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -910,8 +910,8 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{FooterText1}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="2" y="41" width="548" height="12" uuid="5accdc80-d4b3-48e7-9060-4d5db7090e59">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="2" y="42" width="548" height="18" uuid="5accdc80-d4b3-48e7-9060-4d5db7090e59">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
