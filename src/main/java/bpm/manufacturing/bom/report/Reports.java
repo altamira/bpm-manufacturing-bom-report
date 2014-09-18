@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,6 +109,26 @@ public class Reports {
 				
 				//FORMATING DELIVERT DATE
 				String deliveryDateDisplay = new java.text.SimpleDateFormat("w/yyyy").format(new java.util.Date(deliveryTimeStamp));
+				String weekString = new java.text.SimpleDateFormat("w").format(new java.util.Date(deliveryTimeStamp));
+				int weekNo = Integer.parseInt( weekString );
+				String yearString = new java.text.SimpleDateFormat("yyyy").format(new java.util.Date(deliveryTimeStamp));
+				int yearNo = Integer.parseInt( yearString );
+				
+				
+
+				// CALCULATE THE 1ST DAY AND LAST DAY OF THE WEEK
+				Calendar calendar = Calendar.getInstance();
+				calendar.clear();
+				calendar.set(Calendar.WEEK_OF_YEAR, weekNo);
+				calendar.set(Calendar.YEAR, yearNo);
+				// Get the FIRST day of week.
+				Date date = calendar.getTime();
+				String startDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(date);
+				// Get the LAST day of week.
+				calendar.add(Calendar.DATE, 6);
+				Date endDate = calendar.getTime();
+				String endDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(endDate);
+				String deliveryWeekDisplay = startDateDisplay + " a " + endDateDisplay;
 				    
 				//SET THE PARAMETERS FOR JASPER REPORT
 		        parameters.put("Title", "Lista de Material - " + orderNumber);
@@ -117,11 +139,11 @@ public class Reports {
 		     	parameters.put("LogoImage", imfg);
 		     	parameters.put("DateRequest", orderDateDisplay);
 		     	parameters.put("DeliveryTime", deliveryDateDisplay);
+		     	parameters.put("DeliveryWeek", deliveryWeekDisplay);
 		     	parameters.put("NoBudget", quotation);
 		     	// TODO REMOVE THE HARD-CODE VALUE FOR NoProject
 		     	parameters.put("NoProject", "00000");
 		     	parameters.put("Finish", "ACABAMENTO ESPECIAL");
-		     	parameters.put("FooterText1", "￼Observações DO PEDIDO");
 		     	parameters.put("Comment", comment);
 		     	
 		     	Object itemJsonObject = orderJsonObj.get("item");
