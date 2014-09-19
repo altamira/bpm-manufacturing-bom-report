@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-09-19T15:25:31 -->
+<!-- 2014-09-19T16:28:54 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -157,7 +157,9 @@
 	<parameter name="Representative" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
-	<parameter name="OrderID" class="java.lang.String"/>
+	<parameter name="OrderID" class="java.lang.Long">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
 	<parameter name="Finish" class="java.lang.String"/>
 	<parameter name="NoProject" class="java.lang.String"/>
 	<parameter name="NoBudget" class="java.lang.String"/>
@@ -165,7 +167,7 @@
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
 	<parameter name="DateRequest" class="java.lang.String"/>
-	<parameter name="SumTotalWeight" class="java.lang.Float">
+	<parameter name="SumTotalWeight" class="java.lang.Double">
 		<parameterDescription><![CDATA[SumTotalWeight]]></parameterDescription>
 	</parameter>
 	<parameter name="LogoImage" class="java.awt.image.BufferedImage">
@@ -180,13 +182,13 @@
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="itemNo" class="java.lang.String">
+	<field name="itemNo" class="java.lang.Long">
 		<fieldDescription><![CDATA[itemNo]]></fieldDescription>
 	</field>
 	<field name="itemDescription" class="java.lang.String">
 		<fieldDescription><![CDATA[itemDescription]]></fieldDescription>
 	</field>
-	<field name="prodQty" class="java.lang.Float">
+	<field name="prodQty" class="java.lang.Double">
 		<fieldDescription><![CDATA[prodQty]]></fieldDescription>
 	</field>
 	<field name="prodDescription" class="java.lang.String">
@@ -195,10 +197,10 @@
 	<field name="prodColor" class="java.lang.String">
 		<fieldDescription><![CDATA[prodColor]]></fieldDescription>
 	</field>
-	<field name="prodWeight" class="java.lang.Float">
+	<field name="prodWeight" class="java.lang.Double">
 		<fieldDescription><![CDATA[prodWeight]]></fieldDescription>
 	</field>
-	<field name="prodWeightTotal" class="java.lang.Float">
+	<field name="prodWeightTotal" class="java.lang.Double">
 		<fieldDescription><![CDATA[prodWeightTotal]]></fieldDescription>
 	</field>
 	<sortField name="itemNo"/>
@@ -867,7 +869,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement mode="Transparent" x="-3" y="1" width="560" height="20" printWhenGroupChanges="ItemGroup" uuid="4f49cb0c-20e8-468b-a51e-a011ab35e96e">
+				<reportElement mode="Transparent" x="-4" y="1" width="561" height="20" printWhenGroupChanges="ItemGroup" uuid="4f49cb0c-20e8-468b-a51e-a011ab35e96e">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -906,7 +908,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<rectangle>
-				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="-2" y="26" width="560" height="35" uuid="9fb71ef3-885b-465a-90f0-47babe2e03b2">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="-3" y="26" width="560" height="35" uuid="9fb71ef3-885b-465a-90f0-47babe2e03b2">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
