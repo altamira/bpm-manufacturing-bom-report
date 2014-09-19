@@ -5,10 +5,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -83,29 +85,28 @@ public class Reports {
 		//GET THE REPORT DATA FROM API
 		try {
 			Client client = ClientBuilder.newClient();
-			WebTarget webTarget = client.target("http://esb.altamira.com.br:8081/manufacturing/bom/checklist/");
+			WebTarget webTarget = client.target("http://altamira-api.elasticbeanstalk.com/webapi/order/");
 			String responseEntity = webTarget.path(paramOrderId).request(MediaType.APPLICATION_JSON).get(String.class);
-			System.out.println(responseEntity);
 			JSONParser parser=new JSONParser();
 			
 			//PARSE JSON DATA- STRING TO JSON OBJECT
 			try {
 				Object responseObj = parser.parse(responseEntity);
 				JSONObject responseJsonObj = (JSONObject)responseObj;
-				JSONObject orderJsonObj = (JSONObject)responseJsonObj.get("order");
-				String orderNumber = (String) orderJsonObj.get("number");
+				
+				JSONObject orderJsonObj = responseJsonObj;
+				long orderNumber = (long) orderJsonObj.get("number");
 				String customer = (String) orderJsonObj.get("customer");
-				String salesRepresentative = (String) orderJsonObj.get("sales_representative");
-				long orderTimeStamp = Long.valueOf((String)orderJsonObj.get("order_date")).longValue();
-				long deliveryTimeStamp = Long.valueOf((String)orderJsonObj.get("delivery_date")).longValue() ;
-				float sumTotalWeight = (float) 0.00;
+				String salesRepresentative = (String) orderJsonObj.get("representative");
+				long createdTimeStamp = (long) orderJsonObj.get("created");
+				long deliveryTimeStamp = (long) orderJsonObj.get("delivery");
+				double sumTotalWeight = (double) 0.00;
 				
 				String quotation = (String) orderJsonObj.get("quotation");
-				// TODO NEED TO CHECK WHERE TO USE THIS COMMENT VALUE
 				String comment = (String) orderJsonObj.get("comment");
 				
 				//FORMATING ORDER DATE
-				String orderDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(orderTimeStamp));
+				String orderDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(createdTimeStamp));
 				
 				//FORMATING DELIVERT DATE
 				String deliveryDateDisplay = new java.text.SimpleDateFormat("w/yyyy").format(new java.util.Date(deliveryTimeStamp));
@@ -152,7 +153,7 @@ public class Reports {
 		     		for(int i = 0; i < itemJsonArray.size(); i++) {
 						Object itemObject = itemJsonArray.get(i);
 						JSONObject itemJsonObj = (JSONObject)itemObject;
-						String itemNo = (String) itemJsonObj.get("item");
+						long itemNo = (long) itemJsonObj.get("item");
 						String itemDescription = (String) itemJsonObj.get("description");
 						
 						Object prodJsonObject = itemJsonObj.get("product");
@@ -161,11 +162,11 @@ public class Reports {
 				            for(int j = 0; j < prodJsonArray.size(); j++) {
 								Object prodObject = prodJsonArray.get(j);
 								JSONObject prodJsonObj = (JSONObject)prodObject;
-								//String weight = (String) prodJsonObj.get("weight");
-								Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
+								
+								double weightTotal = (double) prodJsonObj.get("weight");
 								String color = (String) prodJsonObj.get("color");
 								String prodDescription = (String) prodJsonObj.get("description");
-								Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
+								double quantity = (double) prodJsonObj.get("quantity");
 								String prodCode = (String) prodJsonObj.get("code");
 								
 								//ADD TO SUM TOTAL WEIGHT
@@ -188,11 +189,11 @@ public class Reports {
 						else {
 							Object prodObject = prodJsonObject;
 							JSONObject prodJsonObj = (JSONObject)prodObject;
-							//String weight = (String) prodJsonObj.get("weight");
-							Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
+							
+							double weightTotal = (double) prodJsonObj.get("weight");
 							String color = (String) prodJsonObj.get("color");
 							String prodDescription = (String) prodJsonObj.get("description");
-							Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
+							double quantity = (double) prodJsonObj.get("quantity");
 							String prodCode = (String) prodJsonObj.get("code");
 							
 							//ADD TO SUM TOTAL WEIGHT
@@ -216,7 +217,7 @@ public class Reports {
 		     	else {
 		     		Object itemObject = itemJsonObject;
 					JSONObject itemJsonObj = (JSONObject)itemObject;
-					String itemNo = (String) itemJsonObj.get("item");
+					long itemNo = (long) itemJsonObj.get("item");
 					String itemDescription = (String) itemJsonObj.get("description");
 					Object prodJsonObject = itemJsonObj.get("product");
 					if (prodJsonObject instanceof JSONArray) {
@@ -224,11 +225,11 @@ public class Reports {
 			            for(int j = 0; j < prodJsonArray.size(); j++) {
 							Object prodObject = prodJsonArray.get(j);
 							JSONObject prodJsonObj = (JSONObject)prodObject;
-							//String weight = (String) prodJsonObj.get("weight");
-							Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
+							
+							double weightTotal = (double) prodJsonObj.get("weight");
 							String color = (String) prodJsonObj.get("color");
 							String prodDescription = (String) prodJsonObj.get("description");
-							Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
+							double quantity = (double) prodJsonObj.get("quantity");
 							String prodCode = (String) prodJsonObj.get("code");
 							
 							//ADD TO SUM TOTAL WEIGHT
@@ -251,11 +252,11 @@ public class Reports {
 					else {
 						Object prodObject = prodJsonObject;
 						JSONObject prodJsonObj = (JSONObject)prodObject;
-						//String weight = (String) prodJsonObj.get("weight");
-						Float weightTotal = Float.parseFloat((String)prodJsonObj.get("weight"));
+						
+						double weightTotal = (double) prodJsonObj.get("weight");
 						String color = (String) prodJsonObj.get("color");
 						String prodDescription = (String) prodJsonObj.get("description");
-						Float quantity = Float.parseFloat((String) prodJsonObj.get("quantity"));
+						double quantity = (double) prodJsonObj.get("quantity");
 						String prodCode = (String) prodJsonObj.get("code");
 						
 						//ADD TO SUM TOTAL WEIGHT
@@ -305,4 +306,11 @@ public class Reports {
     		e.printStackTrace();
     	}
     }
+	
+	private String numberFormat(float number) {
+		Locale locale = new Locale("pt", "BR");
+		NumberFormat numberFormat = NumberFormat.getInstance(locale);
+		String formattedValue = numberFormat.format(number);
+		return formattedValue;
+	}
 }
