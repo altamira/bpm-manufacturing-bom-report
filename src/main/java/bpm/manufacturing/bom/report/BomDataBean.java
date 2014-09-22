@@ -4,18 +4,18 @@ package bpm.manufacturing.bom.report;
 
 public class BomDataBean {
 	
-	private String itemNo;
+	private long itemNo;
 	private String itemDescription;
-	private Float prodQty;
+	private double prodQty;
 	private String prodDescription;
 	private String prodColor;
-	private Float prodWeight;
-	private Float prodWeightTotal;
+	private double prodWeight;
+	private double prodWeightTotal;
 	
-	public String getItemNo() {
+	public long getItemNo() {
 		return itemNo;
 	}
-	public void setItemNo(String itemNo) {
+	public void setItemNo(long itemNo) {
 		this.itemNo = itemNo;
 	}
 	public String getItemDescription() {
@@ -24,10 +24,10 @@ public class BomDataBean {
 	public void setItemDescription(String itemDescription) {
 		this.itemDescription = itemDescription;
 	}
-	public Float getProdQty() {
+	public double getProdQty() {
 		return prodQty;
 	}
-	public void setProdQty(Float quantity) {
+	public void setProdQty(double quantity) {
 		this.prodQty = quantity;
 	}
 	public String getProdDescription() {
@@ -42,17 +42,17 @@ public class BomDataBean {
 	public void setProdColor(String prodColor) {
 		this.prodColor = prodColor;
 	}
-	public Float getProdWeight() {
+	public double getProdWeight() {
 		return prodWeight;
 	}
-	public void setProdWeight(Float weight) {
+	public void setProdWeight(double weight) {
 		this.prodWeight = weight;
 	}
-	public Float getProdWeightTotal() {
+	public double getProdWeightTotal() {
 		return prodWeightTotal;
 	}
-	public void setProdWeightTotal(Float weight) {
-		this.prodWeightTotal = weight;
+	public void setProdWeightTotal(double weightTotal) {
+		this.prodWeightTotal = weightTotal;
 	}
 	
 }
