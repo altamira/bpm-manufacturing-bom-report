@@ -76,7 +76,7 @@ public class Reports {
 		 }
         
 		//CALCULATE THE PATH OF THE JASPER FILE
-		InputStream reportStream = getClass().getResourceAsStream("/reports/bom-by-order.jasper");
+		InputStream reportStream = getClass().getResourceAsStream("/reports/bom-by-order-report.jasper");
 		if (reportStream == null) {
         	return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
         }
