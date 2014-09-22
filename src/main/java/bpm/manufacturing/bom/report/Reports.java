@@ -1,6 +1,7 @@
 package bpm.manufacturing.bom.report;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +40,7 @@ import org.json.simple.parser.ParseException;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -55,11 +57,12 @@ public class Reports {
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "application/pdf" media type.
      * @return 
+     * @return 
      *
      */
 	@GET @Path("/materials/{orderId}")
     @Produces("application/pdf") 
-    public  void getIt(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("orderId") String paramOrderId) throws ServletException, IOException {
+    public  Response getIt(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("orderId") String paramOrderId) throws ServletException, IOException {
 		
 		//GET THE LOGO FILE FROM RESOURCE
 		InputStream reportLogo = getClass().getResourceAsStream("/images/report-header-logo.png");
@@ -81,6 +84,7 @@ public class Reports {
     	ArrayList<BomDataBean> dataList = new ArrayList<BomDataBean>();
     	Map<String, Object> parameters = new HashMap<String, Object>();
     	JasperPrint jasperPrint;
+    	byte[] pdf = null;
 		
 		//GET THE REPORT DATA FROM API
 		try {
@@ -284,28 +288,37 @@ public class Reports {
 
 		} catch (Exception e) {
 				e.printStackTrace();
+				return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
 		
 		//PRINT THE PDF REPORT
     	try {
     		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
     		jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
-    		JRExporter exporter = new JRPdfExporter();
-    		ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
-    		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-    		exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, outputstream);
-    		exporter.exportReport();
-    		resp.setContentLength(outputstream.size());
-    		resp.setContentType("application/pdf");
+    		pdf = JasperExportManager.exportReportToPdf(jasperPrint);
+    		ByteArrayInputStream pdfStream = new ByteArrayInputStream(pdf);
 
-    		ServletOutputStream servletOutputStream =  resp.getOutputStream();
-    		outputstream.writeTo(servletOutputStream);
-    		servletOutputStream.flush();
+            Response.ResponseBuilder response = Response.ok(pdfStream);
+            response.header("Content-Disposition", "inline; filename=Request Report.pdf");
+            return response.build();
     	} catch (JRException e) {
     		// TODO Auto-generated catch block
     		e.printStackTrace();
     	}
+		return null;
     }
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+     * @return 
+     *
+     */
+	@GET @Path("/mfg-proces/{code}")
+    @Produces("application/pdf") 
+    public  void manufacturingProcess(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+		
+	}
 	
 	private String numberFormat(float number) {
 		Locale locale = new Locale("pt", "BR");
