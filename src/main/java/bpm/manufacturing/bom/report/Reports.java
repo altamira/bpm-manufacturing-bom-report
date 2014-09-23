@@ -76,7 +76,7 @@ public class Reports {
              e1.printStackTrace();
 		 }
         
-		//CALCULATE THE PATH OF THE JASPER FILE
+		//GET THE JASPER FILE
 		InputStream reportStream = getClass().getResourceAsStream("/reports/bom-by-order-report.jasper");
 		if (reportStream == null) {
         	return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
@@ -148,8 +148,8 @@ public class Reports {
 		     	parameters.put("DeliveryWeek", deliveryWeekDisplay);
 		     	parameters.put("NoBudget", quotation);
 		     	// TODO REMOVE THE HARD-CODE VALUE FOR NoProject
-		     	parameters.put("NoProject", "00000");
-		     	parameters.put("Finish", "ACABAMENTO ESPECIAL");
+		     	parameters.put("NoProject", (String) orderJsonObj.get("project"));
+		     	parameters.put("Finish", (String) orderJsonObj.get("finish"));
 		     	parameters.put("Comment", comment);
 		     	
 		     	Object itemJsonObject = orderJsonObj.get("item");
@@ -312,15 +312,23 @@ public class Reports {
 	/**
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "application/pdf" media type.
+	 * @return 
      * @return 
      *
      */
 	@GET @Path("/mfg-process/{code}")
     @Produces("application/pdf") 
-    public  void manufacturingProcess(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
-		System.out.println("mfgReportData");
+    public  Response manufacturingProcess(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+		
+		ArrayList<MfgOperationDisplay> dataList = new ArrayList<MfgOperationDisplay>();
+		JasperPrint jasperPrint;
+		byte[] pdf = null;
+		
 		MfgProcessReport mfgProcessReport = new MfgProcessReport();
 		MfgProcessDataBean mfgReportData = mfgProcessReport.getData(paramCode);
+		List<MfgMaterial> mfgInput = null;
+		String revisionByData = "";
+		String revisionDateData = "";
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		//SET THE PARAMETERS
@@ -333,25 +341,31 @@ public class Reports {
      	parameters.put("Width", mfgReportData.getWidth());
      	parameters.put("Length", mfgReportData.getLength());
      	parameters.put("Finish", mfgReportData.getFinish());
-
-		
-		System.out.println(mfgReportData.getCode());
-		System.out.println(mfgReportData.getDescription());
-		System.out.println(mfgReportData.getColor());
-		System.out.println(mfgReportData.getWeight());
-		System.out.println(mfgReportData.getWidth());
-		System.out.println(mfgReportData.getLength());
-		System.out.println(mfgReportData.getFinish());
+     	parameters.put("LogoImage", mfgProcessReport.getLogo());
 		
 		List<MfgRevision> revision = mfgReportData.getRevision();
-		for (int i = 0; i < revision.size(); i++) {
-			System.out.println(i);
-            System.out.println(revision.get(i).getBy());
-            System.out.println(revision.get(i).getDate());
+		for (int i = 0; i < revision.size(); i++) {	
+			String newLineText = "\r\n";
+			if(i == (revision.size() - 1)) {
+				newLineText = "";
+			}
+            revisionByData = revisionByData + revision.get(i).getBy()  + newLineText;
+            revisionDateData = revisionDateData + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(revision.get(i).getDate())) + newLineText;
         }
-		
+		parameters.put("RevisionByData", revisionByData);
+     	parameters.put("RevisionDateData", revisionDateData);
+     	
 		List<MfgOperation> mfgOperations = mfgReportData.getOperation();
 		for (int i = 0; i < mfgOperations.size(); i++) {
+			String operationName = mfgOperations.get(i).getSequence() + " - " + mfgOperations.get(i).getName();
+			String inputCodeList = "";
+			String inputMaterialList = "";
+			String inputQtyList = "";
+			String outputCodeList = "";
+			String outputMaterialList = "";
+			String outputQtyList = "";
+			String descriptionOperation = mfgOperations.get(i).getDescription();
+			String scetchOfOperation = mfgOperations.get(i).getCroqui();
 			System.out.println(i);
             System.out.println(mfgOperations.get(i).getSequence());
             System.out.println(mfgOperations.get(i).getName());
@@ -359,25 +373,80 @@ public class Reports {
             System.out.println(mfgOperations.get(i).getCroqui());
             //System.out.println(mfgOperations.get(i).getInput());
             //System.out.println(mfgOperations.get(i).getOutput());
-            List<MfgMaterial> mfgInput = mfgOperations.get(i).getInput();
-    		for (int i1 = 0; i1 < mfgInput.size(); i1++) {
-    			System.out.println(i1);
-                System.out.println(mfgInput.get(i1).getCode());
-                System.out.println(mfgInput.get(i1).getDescription());
-                System.out.println(mfgInput.get(i1).getQuantity());
-                System.out.println(mfgInput.get(i1).getUnit());
+            mfgInput = mfgOperations.get(i).getInput();
+    		for (int j = 0; j < mfgInput.size(); j++) {
+    			String newLineText = "\r\n";
+    			if(i == (revision.size() - 1)) {
+    				newLineText = "";
+    			}
+    			String qtyText = mfgInput.get(j).getQuantity() + " " + mfgInput.get(j).getUnit();
+    			inputCodeList = inputCodeList + mfgInput.get(j).getCode()  + newLineText;
+    			inputMaterialList = inputMaterialList + mfgInput.get(j).getDescription()  + newLineText;
+    			inputQtyList = inputQtyList + qtyText  + newLineText;
+    			
+    			System.out.println(j);
+                System.out.println(mfgInput.get(j).getCode());
+                System.out.println(mfgInput.get(j).getDescription());
+                System.out.println(mfgInput.get(j).getQuantity());
+                System.out.println(mfgInput.get(j).getUnit());
             }
     		
     		List<MfgMaterial> mfgOutput = mfgOperations.get(i).getOutput();
-    		for (int i1 = 0; i1 < mfgOutput.size(); i1++) {
-    			System.out.println(i1);
-                System.out.println(mfgOutput.get(i1).getCode());
-                System.out.println(mfgOutput.get(i1).getDescription());
-                System.out.println(mfgOutput.get(i1).getQuantity());
-                System.out.println(mfgOutput.get(i1).getUnit());
+    		for (int j = 0; j < mfgOutput.size(); j++) {
+    			String newLineText = "\r\n";
+    			if(i == (revision.size() - 1)) {
+    				newLineText = "";
+    			}
+    			String qtyText = mfgOutput.get(j).getQuantity() + " " + mfgOutput.get(j).getUnit();
+    			outputCodeList = outputCodeList + mfgOutput.get(j).getCode()  + newLineText;
+    			outputMaterialList = outputMaterialList + mfgOutput.get(j).getDescription()  + newLineText;
+    			outputQtyList = outputQtyList + qtyText  + newLineText;
+    			System.out.println(j);
+                System.out.println(mfgOutput.get(j).getCode());
+                System.out.println(mfgOutput.get(j).getDescription());
+                System.out.println(mfgOutput.get(j).getQuantity());
+                System.out.println(mfgOutput.get(j).getUnit());
             }
+    		
+    		//CREATE AND ADD THE OBJECT FOR MFG OPERATION DATA LIST
+    		//CREATE THE OBJECT
+    		MfgOperationDisplay dataBean = new MfgOperationDisplay();
+			dataBean.setName(operationName);
+			dataBean.setDescriptionOperation(descriptionOperation);
+			dataBean.setScetchOfOperation(scetchOfOperation);
+			dataBean.setInputCodeList(inputCodeList);
+			dataBean.setInputMaterialList(inputMaterialList);
+			dataBean.setInputQtyList(inputQtyList);
+			dataBean.setOutputCodeList(outputCodeList);
+			dataBean.setOutputMaterialList(outputMaterialList);
+			dataBean.setOutputQtyList(outputQtyList);
+
+			//ADD THE OBJECT TO DATALIST
+			dataList.add(dataBean);	
             
         }
+		
+		//GET THE JASPER FILE
+		InputStream reportStream = getClass().getResourceAsStream("/reports/mfg-process/mfg-process-report.jasper");
+		if (reportStream == null) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
+		}
+		
+		//PRINT THE PDF REPORT
+    	try {
+    		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
+    		jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
+    		pdf = JasperExportManager.exportReportToPdf(jasperPrint);
+    		ByteArrayInputStream pdfStream = new ByteArrayInputStream(pdf);
+
+            Response.ResponseBuilder response = Response.ok(pdfStream);
+            response.header("Content-Disposition", "inline; filename=Request Report.pdf");
+            return response.build();
+    	} catch (JRException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+		return null;
 		
 		
 	}
