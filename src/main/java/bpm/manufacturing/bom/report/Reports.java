@@ -366,13 +366,7 @@ public class Reports {
 			String outputQtyList = "";
 			String descriptionOperation = mfgOperations.get(i).getDescription();
 			String scetchOfOperation = mfgOperations.get(i).getCroqui();
-			System.out.println(i);
-            System.out.println(mfgOperations.get(i).getSequence());
-            System.out.println(mfgOperations.get(i).getName());
-            System.out.println(mfgOperations.get(i).getDescription());
-            System.out.println(mfgOperations.get(i).getCroqui());
-            //System.out.println(mfgOperations.get(i).getInput());
-            //System.out.println(mfgOperations.get(i).getOutput());
+			
             mfgInput = mfgOperations.get(i).getInput();
     		for (int j = 0; j < mfgInput.size(); j++) {
     			String newLineText = "\r\n";
@@ -384,11 +378,6 @@ public class Reports {
     			inputMaterialList = inputMaterialList + mfgInput.get(j).getDescription()  + newLineText;
     			inputQtyList = inputQtyList + qtyText  + newLineText;
     			
-    			System.out.println(j);
-                System.out.println(mfgInput.get(j).getCode());
-                System.out.println(mfgInput.get(j).getDescription());
-                System.out.println(mfgInput.get(j).getQuantity());
-                System.out.println(mfgInput.get(j).getUnit());
             }
     		
     		List<MfgMaterial> mfgOutput = mfgOperations.get(i).getOutput();
@@ -401,11 +390,7 @@ public class Reports {
     			outputCodeList = outputCodeList + mfgOutput.get(j).getCode()  + newLineText;
     			outputMaterialList = outputMaterialList + mfgOutput.get(j).getDescription()  + newLineText;
     			outputQtyList = outputQtyList + qtyText  + newLineText;
-    			System.out.println(j);
-                System.out.println(mfgOutput.get(j).getCode());
-                System.out.println(mfgOutput.get(j).getDescription());
-                System.out.println(mfgOutput.get(j).getQuantity());
-                System.out.println(mfgOutput.get(j).getUnit());
+    			
             }
     		
     		//CREATE AND ADD THE OBJECT FOR MFG OPERATION DATA LIST
