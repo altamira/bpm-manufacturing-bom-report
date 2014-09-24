@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-09-24T14:44:55 -->
+<!-- 2014-09-24T17:27:59 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mfg-process" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5f5835b1-2afc-4637-b714-8789adf84697">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="LogoImage" class="java.awt.image.BufferedImage">
@@ -334,11 +334,11 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<staticText>
-					<reportElement x="191" y="4" width="170" height="12" uuid="de915165-49cf-4d05-ab13-c8365a33fe1b">
+					<reportElement x="191" y="3" width="170" height="15" uuid="de915165-49cf-4d05-ab13-c8365a33fe1b">
 						<property name="local_mesure_unitheight" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
-					<textElement textAlignment="Center">
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[HISTORICO DE REVISOES]]></text>
@@ -354,11 +354,11 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="11" y="90" width="42" height="10" uuid="3a6bbe33-8a47-4032-9976-a8f82e787c7c">
+				<reportElement x="11" y="88" width="42" height="14" uuid="3a6bbe33-8a47-4032-9976-a8f82e787c7c">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[CRIADO EM]]></text>
@@ -382,11 +382,11 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textFieldExpression><![CDATA[$P{RevisionByData}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="180" y="90" width="120" height="10" uuid="415011bc-3b00-4ea9-85e0-1728b9a12805">
+				<reportElement x="180" y="88" width="120" height="14" uuid="415011bc-3b00-4ea9-85e0-1728b9a12805">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[CRIADO POR]]></text>
