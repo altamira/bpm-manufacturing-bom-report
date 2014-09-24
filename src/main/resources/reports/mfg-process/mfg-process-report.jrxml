@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-09-24T17:27:59 -->
+<!-- 2014-09-24T18:10:03 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mfg-process" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5f5835b1-2afc-4637-b714-8789adf84697">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="LogoImage" class="java.awt.image.BufferedImage">
@@ -206,11 +206,11 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="10" y="3" width="42" height="10" uuid="7881a2b2-53ce-42ce-8828-c8e9bc6d7dac">
+				<reportElement x="10" y="1" width="42" height="14" uuid="7881a2b2-53ce-42ce-8828-c8e9bc6d7dac">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[CÓDIGO]]></text>
@@ -228,11 +228,11 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textFieldExpression><![CDATA[$P{Code}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="180" y="3" width="42" height="10" uuid="f6835710-1473-4e72-b246-6e19850ba479">
+				<reportElement x="180" y="1" width="70" height="14" uuid="f6835710-1473-4e72-b246-6e19850ba479">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[DESCRIÇÃO]]></text>
@@ -277,41 +277,41 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="10" y="33" width="70" height="10" uuid="579f449c-26ce-4e22-8d19-bfe0b232d93e">
+				<reportElement x="10" y="31" width="70" height="14" uuid="579f449c-26ce-4e22-8d19-bfe0b232d93e">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[COMPRIMENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="131" y="33" width="148" height="10" uuid="7db02582-d316-40d2-ab5b-a1ed7bfb925c">
+				<reportElement x="131" y="31" width="148" height="14" uuid="7db02582-d316-40d2-ab5b-a1ed7bfb925c">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[COR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="33" width="90" height="10" uuid="c626ed9e-19b3-4077-9fa9-9a5c8237cdb1">
+				<reportElement x="290" y="31" width="90" height="14" uuid="c626ed9e-19b3-4077-9fa9-9a5c8237cdb1">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[PESO UNITARIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="390" y="33" width="164" height="10" uuid="6fec49f1-d5cb-4f4f-87a6-d6bcd8452634">
+				<reportElement x="390" y="31" width="164" height="14" uuid="6fec49f1-d5cb-4f4f-87a6-d6bcd8452634">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[ACABAMENTO]]></text>
