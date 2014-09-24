@@ -370,7 +370,7 @@ public class Reports {
             mfgInput = mfgOperations.get(i).getInput();
     		for (int j = 0; j < mfgInput.size(); j++) {
     			String newLineText = "\r\n";
-    			if(i == (revision.size() - 1)) {
+    			if(j == (mfgInput.size() - 1)) {
     				newLineText = "";
     			}
     			String qtyText = mfgInput.get(j).getQuantity() + " " + mfgInput.get(j).getUnit();
@@ -383,7 +383,7 @@ public class Reports {
     		List<MfgMaterial> mfgOutput = mfgOperations.get(i).getOutput();
     		for (int j = 0; j < mfgOutput.size(); j++) {
     			String newLineText = "\r\n";
-    			if(i == (revision.size() - 1)) {
+    			if(j == (mfgOutput.size() - 1)) {
     				newLineText = "";
     			}
     			String qtyText = mfgOutput.get(j).getQuantity() + " " + mfgOutput.get(j).getUnit();
