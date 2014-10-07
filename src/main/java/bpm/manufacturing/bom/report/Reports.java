@@ -436,6 +436,77 @@ public class Reports {
 		
 	}
 	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/mfg-order/{code}")
+    @Produces("application/pdf") 
+    public  Response manufacturingOrder(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+		
+		JasperPrint jasperPrint;
+		byte[] pdf = null;
+		
+		MfgOrderReport mfgOrderReport = new MfgOrderReport();
+		MfgOrderDataBean mfgReportData = mfgOrderReport.getData(paramCode);
+		List<MfgOrderMaterial> mfgOrderMaterial = null;
+		String componentCodeData = "";
+		String componentNameData = "";
+		
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		//SET THE PARAMETERS
+		parameters.put("Title", "ORDEM FABRICAÇÃO");
+     	parameters.put("UserName", "MASTER");
+     	parameters.put("Code", mfgReportData.getCode());
+     	parameters.put("Description", mfgReportData.getDescription());
+     	parameters.put("Date", mfgReportData.getDate());
+     	parameters.put("Sector", mfgReportData.getSector());
+     	parameters.put("IssuedBy", mfgReportData.getIssuedBy());
+     	parameters.put("Operation", mfgReportData.getOperation());
+     	parameters.put("LogoImage", mfgOrderReport.getLogo());
+		
+		List<MfgOrderComponent> components = mfgReportData.getComponents();
+		for (int i = 0; i < components.size(); i++) {	
+			String newLineText = "\r\n";
+			if(i == (components.size() - 1)) {
+				newLineText = "";
+			}
+			componentCodeData = componentCodeData + components.get(i).getCode()  + newLineText;
+			componentNameData = componentNameData + components.get(i).getName()  + newLineText;
+        }
+		parameters.put("ComponentCodeData", componentCodeData);
+     	parameters.put("ComponentNameData", componentNameData);
+     	
+		List<MfgOrderMaterial> OrderMaterial = mfgReportData.getMaterials();
+		
+		//GET THE JASPER FILE
+		InputStream reportStream = getClass().getResourceAsStream("/reports/mfg-order/mfg-order-report.jasper");
+		if (reportStream == null) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
+		}
+		
+		//PRINT THE PDF REPORT
+    	try {
+    		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(OrderMaterial);
+    		jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
+    		pdf = JasperExportManager.exportReportToPdf(jasperPrint);
+    		ByteArrayInputStream pdfStream = new ByteArrayInputStream(pdf);
+
+            Response.ResponseBuilder response = Response.ok(pdfStream);
+            response.header("Content-Disposition", "inline; filename=Request Report.pdf");
+            return response.build();
+    	} catch (JRException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+		return null;
+		
+		
+	}
+	
 	private String numberFormat(float number) {
 		Locale locale = new Locale("pt", "BR");
 		NumberFormat numberFormat = NumberFormat.getInstance(locale);
