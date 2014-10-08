@@ -2,22 +2,18 @@ package bpm.manufacturing.bom.report;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
@@ -29,7 +25,6 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -39,13 +34,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporter;
-import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
 
 /**
  * Root resource (exposed at "reports" path)
@@ -319,120 +311,9 @@ public class Reports {
 	@GET @Path("/mfg-process/{code}")
     @Produces("application/pdf") 
     public  Response manufacturingProcess(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
-		
-		ArrayList<MfgOperationDisplay> dataList = new ArrayList<MfgOperationDisplay>();
-		JasperPrint jasperPrint;
-		byte[] pdf = null;
-		
+	
 		MfgProcessReport mfgProcessReport = new MfgProcessReport();
-		MfgProcessDataBean mfgReportData = mfgProcessReport.getData(paramCode);
-		List<MfgMaterial> mfgInput = null;
-		String revisionByData = "";
-		String revisionDateData = "";
-		
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		//SET THE PARAMETERS
-		parameters.put("Title", "Processo de Fabricação");
-     	parameters.put("UserName", "MASTER");
-     	parameters.put("Code", mfgReportData.getCode());
-     	parameters.put("Description", mfgReportData.getDescription());
-     	parameters.put("Color", mfgReportData.getColor());
-     	parameters.put("Weight", mfgReportData.getWeight());
-     	parameters.put("Width", mfgReportData.getWidth());
-     	parameters.put("Length", mfgReportData.getLength());
-     	parameters.put("Finish", mfgReportData.getFinish());
-     	parameters.put("LogoImage", mfgProcessReport.getLogo());
-		
-		List<MfgRevision> revision = mfgReportData.getRevision();
-		for (int i = 0; i < revision.size(); i++) {	
-			String newLineText = "\r\n";
-			if(i == (revision.size() - 1)) {
-				newLineText = "";
-			}
-            revisionByData = revisionByData + revision.get(i).getBy()  + newLineText;
-            revisionDateData = revisionDateData + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(revision.get(i).getDate())) + newLineText;
-        }
-		parameters.put("RevisionByData", revisionByData);
-     	parameters.put("RevisionDateData", revisionDateData);
-     	
-		List<MfgOperation> mfgOperations = mfgReportData.getOperation();
-		for (int i = 0; i < mfgOperations.size(); i++) {
-			String operationName = mfgOperations.get(i).getSequence() + " - " + mfgOperations.get(i).getName();
-			String inputCodeList = "";
-			String inputMaterialList = "";
-			String inputQtyList = "";
-			String outputCodeList = "";
-			String outputMaterialList = "";
-			String outputQtyList = "";
-			String descriptionOperation = mfgOperations.get(i).getDescription();
-			String scetchOfOperation = mfgOperations.get(i).getCroqui();
-			
-            mfgInput = mfgOperations.get(i).getInput();
-    		for (int j = 0; j < mfgInput.size(); j++) {
-    			String newLineText = "\r\n";
-    			if(j == (mfgInput.size() - 1)) {
-    				newLineText = "";
-    			}
-    			String qtyText = mfgInput.get(j).getQuantity() + " " + mfgInput.get(j).getUnit();
-    			inputCodeList = inputCodeList + mfgInput.get(j).getCode()  + newLineText;
-    			inputMaterialList = inputMaterialList + mfgInput.get(j).getDescription()  + newLineText;
-    			inputQtyList = inputQtyList + qtyText  + newLineText;
-    			
-            }
-    		
-    		List<MfgMaterial> mfgOutput = mfgOperations.get(i).getOutput();
-    		for (int j = 0; j < mfgOutput.size(); j++) {
-    			String newLineText = "\r\n";
-    			if(j == (mfgOutput.size() - 1)) {
-    				newLineText = "";
-    			}
-    			String qtyText = mfgOutput.get(j).getQuantity() + " " + mfgOutput.get(j).getUnit();
-    			outputCodeList = outputCodeList + mfgOutput.get(j).getCode()  + newLineText;
-    			outputMaterialList = outputMaterialList + mfgOutput.get(j).getDescription()  + newLineText;
-    			outputQtyList = outputQtyList + qtyText  + newLineText;
-    			
-            }
-    		
-    		//CREATE AND ADD THE OBJECT FOR MFG OPERATION DATA LIST
-    		//CREATE THE OBJECT
-    		MfgOperationDisplay dataBean = new MfgOperationDisplay();
-			dataBean.setName(operationName);
-			dataBean.setDescriptionOperation(descriptionOperation);
-			dataBean.setScetchOfOperation(scetchOfOperation);
-			dataBean.setInputCodeList(inputCodeList);
-			dataBean.setInputMaterialList(inputMaterialList);
-			dataBean.setInputQtyList(inputQtyList);
-			dataBean.setOutputCodeList(outputCodeList);
-			dataBean.setOutputMaterialList(outputMaterialList);
-			dataBean.setOutputQtyList(outputQtyList);
-
-			//ADD THE OBJECT TO DATALIST
-			dataList.add(dataBean);	
-            
-        }
-		
-		//GET THE JASPER FILE
-		InputStream reportStream = getClass().getResourceAsStream("/reports/mfg-process/mfg-process-report.jasper");
-		if (reportStream == null) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
-		}
-		
-		//PRINT THE PDF REPORT
-    	try {
-    		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
-    		jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
-    		pdf = JasperExportManager.exportReportToPdf(jasperPrint);
-    		ByteArrayInputStream pdfStream = new ByteArrayInputStream(pdf);
-
-            Response.ResponseBuilder response = Response.ok(pdfStream);
-            response.header("Content-Disposition", "inline; filename=Request Report.pdf");
-            return response.build();
-    	} catch (JRException e) {
-    		// TODO Auto-generated catch block
-    		e.printStackTrace();
-    	}
-		return null;
-		
+		return mfgProcessReport.getReport(paramCode);	
 		
 	}
 	
@@ -447,63 +328,8 @@ public class Reports {
     @Produces("application/pdf") 
     public  Response manufacturingOrder(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
 		
-		JasperPrint jasperPrint;
-		byte[] pdf = null;
-		
 		MfgOrderReport mfgOrderReport = new MfgOrderReport();
-		MfgOrderDataBean mfgReportData = mfgOrderReport.getData(paramCode);
-		List<MfgOrderMaterial> mfgOrderMaterial = null;
-		String componentCodeData = "";
-		String componentNameData = "";
-		
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		//SET THE PARAMETERS
-		parameters.put("Title", "ORDEM FABRICAÇÃO");
-     	parameters.put("UserName", "MASTER");
-     	parameters.put("Code", mfgReportData.getCode());
-     	parameters.put("Description", mfgReportData.getDescription());
-     	parameters.put("Date", mfgReportData.getDate());
-     	parameters.put("Sector", mfgReportData.getSector());
-     	parameters.put("IssuedBy", mfgReportData.getIssuedBy());
-     	parameters.put("Operation", mfgReportData.getOperation());
-     	parameters.put("LogoImage", mfgOrderReport.getLogo());
-		
-		List<MfgOrderComponent> components = mfgReportData.getComponents();
-		for (int i = 0; i < components.size(); i++) {	
-			String newLineText = "\r\n";
-			if(i == (components.size() - 1)) {
-				newLineText = "";
-			}
-			componentCodeData = componentCodeData + components.get(i).getCode()  + newLineText;
-			componentNameData = componentNameData + components.get(i).getName()  + newLineText;
-        }
-		parameters.put("ComponentCodeDataList", componentCodeData);
-     	parameters.put("ComponentNameDataList", componentNameData);
-     	
-		List<MfgOrderMaterial> OrderMaterial = mfgReportData.getMaterials();
-		
-		//GET THE JASPER FILE
-		InputStream reportStream = getClass().getResourceAsStream("/reports/mfg-order/mfg-order-report.jasper");
-		if (reportStream == null) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
-		}
-		
-		//PRINT THE PDF REPORT
-    	try {
-    		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(OrderMaterial);
-    		jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
-    		pdf = JasperExportManager.exportReportToPdf(jasperPrint);
-    		ByteArrayInputStream pdfStream = new ByteArrayInputStream(pdf);
-
-            Response.ResponseBuilder response = Response.ok(pdfStream);
-            response.header("Content-Disposition", "inline; filename=Request Report.pdf");
-            return response.build();
-    	} catch (JRException e) {
-    		// TODO Auto-generated catch block
-    		e.printStackTrace();
-    	}
-		return null;
-		
+		return mfgOrderReport.getReport(paramCode);	
 		
 	}
 	
