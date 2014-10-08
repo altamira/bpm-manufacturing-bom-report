@@ -7,12 +7,12 @@
     "operation": "10 - PERFILAMENTO",
     "components": [
         {
-            "code": "1410895028676",
-            "name": "ROBERTO ZELLI"
+            "code": "ALPRFQ30 - KG20000F330",
+            "name": "ACO FINA QUENTE PRETO ROLO 2,00 MM 330 MM"
         },
         {
-            "code": 1410895028676,
-            "name": "HELIO TODA"
+            "code": "PERF - PPLTUBO 113",
+            "name": "FERFILADEIRA "
         }
     ],
     "materials": [
@@ -23,7 +23,7 @@
             "request": 12234,
             "client": "MULT",
             "delivery": "10/09/14",
-            "weightTotal": 233
+            "weightTotal": 432000
         },
         {
             "amount": 40,
@@ -32,7 +32,7 @@
             "request": 72243,
             "client": "AMA",
             "delivery": "10/09/14",
-            "weightTotal": 233
+            "weightTotal": 349900
         },
         {
             "amount": 50,
@@ -41,7 +41,7 @@
             "request": 76654,
             "client": "SENAI",
             "delivery": "10/09/14",
-            "weightTotal": 233
+            "weightTotal": 898204
         },
         {
             "amount": 10,
@@ -50,7 +50,7 @@
             "request": 56678,
             "client": "BWF",
             "delivery": "10/09/14",
-            "weightTotal": 233
+            "weightTotal": 1218234
         },
         {
             "amount": 10,
@@ -59,7 +59,7 @@
             "request": 76654,
             "client": "ZENSUL",
             "delivery": "10/09/14",
-            "weightTotal": 233
+            "weightTotal": 568520
         }
     ]
 }

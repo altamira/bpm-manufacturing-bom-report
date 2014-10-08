@@ -477,8 +477,8 @@ public class Reports {
 			componentCodeData = componentCodeData + components.get(i).getCode()  + newLineText;
 			componentNameData = componentNameData + components.get(i).getName()  + newLineText;
         }
-		parameters.put("ComponentCodeData", componentCodeData);
-     	parameters.put("ComponentNameData", componentNameData);
+		parameters.put("ComponentCodeDataList", componentCodeData);
+     	parameters.put("ComponentNameDataList", componentNameData);
      	
 		List<MfgOrderMaterial> OrderMaterial = mfgReportData.getMaterials();
 		
