@@ -60,13 +60,13 @@ public class Reports {
 		//GET THE LOGO FILE FROM RESOURCE
 		InputStream reportLogo = getClass().getResourceAsStream("/images/report-header-logo.png");
 
-		 BufferedImage imfg = null;
-		 try {
-             //InputStream in = new ByteArrayInputStream(requestReportAltamiraimage);
-             imfg = ImageIO.read(reportLogo);
-		 } catch (Exception e1) {
-             e1.printStackTrace();
-		 }
+		BufferedImage imfg = null;
+		try {
+			//InputStream in = new ByteArrayInputStream(requestReportAltamiraimage);
+			imfg = ImageIO.read(reportLogo);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
         
 		//GET THE JASPER FILE
 		InputStream reportStream = getClass().getResourceAsStream("/reports/bom-by-order-report.jasper");
@@ -330,6 +330,22 @@ public class Reports {
 		
 		MfgOrderReport mfgOrderReport = new MfgOrderReport();
 		return mfgOrderReport.getReport(paramCode);	
+		
+	}
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/service-order-painting/{code}")
+    @Produces("application/pdf") 
+    public  Response serviceOrderPainting(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+		
+		ServiceOrderPaintingReport serviceOrderPaintingReport = new ServiceOrderPaintingReport();
+		return serviceOrderPaintingReport.getReport(paramCode);	
 		
 	}
 	
