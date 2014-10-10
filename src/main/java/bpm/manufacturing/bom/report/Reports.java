@@ -349,6 +349,22 @@ public class Reports {
 		
 	}
 	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/service-order-production/{code}")
+    @Produces("application/pdf") 
+    public  Response serviceOrderProduction(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+		
+		ServiceOrderProductionReport serviceOrderProductionReport = new ServiceOrderProductionReport();
+		return serviceOrderProductionReport.getReport(paramCode);	
+		
+	}
+	
 	private String numberFormat(float number) {
 		Locale locale = new Locale("pt", "BR");
 		NumberFormat numberFormat = NumberFormat.getInstance(locale);

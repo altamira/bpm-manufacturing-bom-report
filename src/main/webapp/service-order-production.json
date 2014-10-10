@@ -1,0 +1,127 @@
+{  
+   "number":72376,
+   "customer":"COLUNA NORMAL CH12 2800MM",
+   "representative":"Blue",
+   "created": 1418382671000,
+   "delivery": 1419937871000,
+   "quotation":0,
+   "comment":"finish",
+   "project":"12345",
+   "finish":"",
+   "item":[  
+      {  
+		 "item": 1,
+         "description":"￼PORTA-PALETES 1 CONJUNTO DE ESTRUTURAS METÁLICAS DO TIPO PORTA-PALETES MEDINDO 12000 X 1000 X 4000 MM COMPOSTO POR 4 MÓDULOS, SENDO: - 3 MÓDULOS MEDINDO 2700 X 1000 X 4000 MM COM 2 PARES DE LONGARINAS PARA 2000 KGF E - 1 MÓDULO MEDINDO 3500 X 1000 X 4000 MM COM 2 PARES DE LONGARINAS PARA 3000 KGF. CARGAS UNIFORMEMENTE DISTRIBUIDAS. PINTURA: COLUNAS DOS MONTANTES CINZA E LONGARINAS LARANJA. ATENÇÃO: VERIFICAR NO ITEM 'COR DA PINTURA' OS ACESSÓRIOS QUE SERÃO GALVANIZADOS E SEM PINTURA.",
+         "product":[  
+            {  
+               "code": 2345,
+               "color":"Mopl",
+               "quantity":12,
+               "description":"COLUNA NORMAL 1, 80 4000MM",
+               "note":"",
+               "weight":23445
+            },
+            {  
+               "code": 2345,
+               "color":"Lokp",
+               "quantity":20,
+               "description":"SAPATA PPL NORMAL COM 02 CHUMBADOR",
+               "note":"",
+               "weight":23445
+            },
+            {  
+               "code": 2345,
+               "color":"Uoi",
+               "quantity":12,
+               "description":"COLUNA NORMAL 1, 80 4000MM",
+               "note":"",
+               "weight":3324
+            },
+            {  
+               "code": 2345,
+               "color":"Wqs",
+               "quantity":20,
+               "description":"SAPATA PPL NORMAL COM 02 CHUMBADOR",
+               "note":"",
+               "weight":1123
+            },
+            {  
+               "code": 2345,
+               "color":"Swe",
+               "quantity":12,
+               "description":"COLUNA NORMAL 1, 80 4000MM",
+               "note":"",
+               "weight":09809
+            },
+            {  
+               "code": 2345,
+               "color":"Qwe",
+               "quantity":20,
+               "description":"SAPATA PPL NORMAL COM 02 CHUMBADOR",
+               "note":"",
+               "weight":23445
+            },
+            {  
+               "code": 2345,
+               "color":"Ase",
+               "quantity":12,
+               "description":"COLUNA NORMAL 1, 80 4000MM",
+               "note":"",
+               "weight":23445
+            },
+            {  
+               "code": 2345,
+               "color":"Abc",
+               "quantity":20,
+               "description":"SAPATA PPL NORMAL COM 02 CHUMBADOR",
+               "note":"",
+               "weight":23445
+            }
+         ]
+      },
+      {  
+      	 "item": 2,
+         "description":"￼1 CONJUNTO DE ESTRUTURAS METÁLICAS DO TIPO PORTA-PALETES MEDINDO 6040 X 1000 X 4000 MM COMPOSTO POR 2 MÓDULOS, SENDO: - 1 MÓDULO MEDINDO 2300 X 1000 X 4000 MM COM 2 PARES DE LONGARINAS PARA 2000 KGF E - 1 MÓDULO MEDINDO 3500 X 1000 X 4000 MM COM 2 PARES DE LONGARINAS PARA 3000 KGF. CARGAS UNIFORMEMENTE DISTRIBUIDAS. PINTURA: COLUNAS DOS MONTANTES CINZA E LONGARINAS LARANJA. ATENÇÃO: VERIFICAR NO ITEM 'COR DA PINTURA' OS ACESSÓRIOS QUE SERÃO GALVANIZADOS E SEM PINTURA.",
+         "product":[  
+            {  
+               "code": 2345,
+               "color":"Was",
+               "quantity":12,
+               "description":"LONGARINA FECHADA 150 CH14 MED 3500MM",
+               "note":"NOOT",
+               "weight":0923
+            },
+            {  
+               "code": 2345,
+               "color":"Kio",
+               "quantity":12,
+               "description":"LONGARINA FECHADA 113 3500MM",
+               "note":"",
+               "weight":23445
+            }
+         ]
+      },
+      {  
+      	 "item": 12345,
+         "description":"￼1 MÓDULO DE ESTRUTURA METÁLICA DO TIPO PORTA-PALETES MEDINDO 2700 X 1000 X 4000 MM ( MEDIDA TOTAL FRONTAL = 2860 MM ) COM 2 PARES DE LONGARINAS APTOS A SUPORTAR UMA CARGA UNIFORMEMENTE DISTRIBUIDA DE 2000 KGF CADA. CARGAS UNIFORMEMENTE DISTRIBUIDAS. PINTURA: COLUNAS DOS MONTANTES CINZA E LONGARINAS LARANJA. ATENÇÃO: VERIFICAR NO ITEM 'COR DA PINTURA' OS ACESSÓRIOS QUE SERÃO GALVANIZADOS E SEM PINTURA.",
+         "product":[  
+            {  
+               "code": 2345,
+               "color":"Yui",
+               "quantity":12,
+               "description":"LONGARINA FECHADA 334 3500MM",
+               "note":"",
+               "weight":23445
+            },
+            {  
+               "code": 2345,
+               "color":"Dsa",
+               "quantity":30,
+               "description":"LONGARINA FECHADA 555 3500MM",
+               "note":"",
+               "weight":13456
+            }
+         ]
+      }
+   ]
+}

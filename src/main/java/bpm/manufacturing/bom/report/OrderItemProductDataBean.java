@@ -5,8 +5,8 @@ public class OrderItemProductDataBean {
 	private String color;
 	private String description;
 	private String note;
-	private int quantity;
-	private int weight;
+	private long quantity;
+	private long weight;
 	private long itemCode;
 	private String itemDescription;
 	
@@ -28,16 +28,16 @@ public class OrderItemProductDataBean {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getQuantity() {
+	public long getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(long quantity) {
 		this.quantity = quantity;
 	}
-	public int getWeight() {
+	public long getWeight() {
 		return weight;
 	}
-	public void setWeight(int weight) {
+	public void setWeight(long weight) {
 		this.weight = weight;
 	}
 	public String getNote() {

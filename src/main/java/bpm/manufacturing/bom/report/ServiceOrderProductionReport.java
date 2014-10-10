@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -24,12 +23,12 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
-public class ServiceOrderPaintingReport {
+public class ServiceOrderProductionReport {
 	
 	public OrderDataBean getData(String code) {
-			
+		
 		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://localhost:8080/bpm-manufacturing-bom-report/service-order-painting.json");
+		WebTarget webTarget = client.target("http://localhost:8080/bpm-manufacturing-bom-report/service-order-production.json");
 		OrderDataBean OrderData = webTarget.path("").request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
 		return OrderData;
 	}
@@ -69,7 +68,7 @@ public class ServiceOrderPaintingReport {
 		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		//SET THE PARAMETERS FOR JASPER REPORT
-        parameters.put("Title", "Ordem de Serviço (Pintura)");
+        parameters.put("Title", "￼￼Ordem de Serviço (Produção)");
      	parameters.put("UserName", "MASTER");
      	parameters.put("Customer", reportData.getCustomer());
      	parameters.put("Representative", reportData.getRepresentative());
@@ -95,9 +94,9 @@ public class ServiceOrderPaintingReport {
 			}
 			
      	}
-     	System.out.println(dataList.size());
+     	
      	//GET THE JASPER FILE
-		InputStream reportStream = getClass().getResourceAsStream("/reports/service-order-painting/service-order-painting-report.jasper");
+		InputStream reportStream = getClass().getResourceAsStream("/reports/service-order-production/service-order-production-report.jasper");
 		if (reportStream == null) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
 		}
@@ -132,5 +131,6 @@ public class ServiceOrderPaintingReport {
 		 }
 		 return imfg;
 	}
+
 
 }
