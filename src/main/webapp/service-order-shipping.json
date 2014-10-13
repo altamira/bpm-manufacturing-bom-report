@@ -1,0 +1,79 @@
+{  
+   "number":72376,
+   "customer":"COLUNA NORMAL CH12 2800MM",
+   "representative":"Blue",
+   "created": 1418382671000,
+   "delivery": 1419937871000,
+   "quotation":0,
+   "comment":"finish",
+   "project":"12345",
+   "finish":"",
+   "item":[  
+      {  
+		 "item": 12343,
+         "description":"CZ-PAD",
+         "product":[  
+            {  
+               "code": 2345,
+               "color":"",
+               "quantity":12,
+               "description":"COLUNA NORMAL 1, 80 4000MM",
+               "note":"",
+               "weight":23445
+            },
+            {  
+               "code": 2345,
+               "color":"",
+               "quantity":20,
+               "description":"SAPATA PPL NORMAL COM 02 CHUMBADOR",
+               "note":"",
+               "weight":23445
+            }
+         ]
+      },
+      {  
+      	 "item": 12344,
+         "description":"GALV-E",
+         "product":[  
+            {  
+               "code": 2345,
+               "color":"",
+               "quantity":12,
+               "description":"LONGARINA FECHADA 150 CH14 MED 3500MM",
+               "note":"NOOT",
+               "weight":0923
+            },
+            {  
+               "code": 2345,
+               "color":"",
+               "quantity":12,
+               "description":"LONGARINA FECHADA 113 3500MM",
+               "note":"",
+               "weight":23445
+            }
+         ]
+      },
+      {  
+      	 "item": 12345,
+         "description":"LA-LB",
+         "product":[  
+            {  
+               "code": 2345,
+               "color":"",
+               "quantity":12,
+               "description":"LONGARINA FECHADA 334 3500MM",
+               "note":"",
+               "weight":23445
+            },
+            {  
+               "code": 2345,
+               "color":"",
+               "quantity":30,
+               "description":"LONGARINA FECHADA 555 3500MM",
+               "note":"",
+               "weight":13456
+            }
+         ]
+      }
+   ]
+}
