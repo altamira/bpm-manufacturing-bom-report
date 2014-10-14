@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-13T20:07:29 -->
+<!-- 2014-10-14T20:16:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-production-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5816354c-f18c-41a3-af74-3a0505e5a0f2">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="Title" class="java.lang.String">
@@ -227,7 +227,7 @@
 					</textElement>
 					<text><![CDATA[PESO TOTAL (kg)]]></text>
 				</staticText>
-				<textField pattern="#.###">
+				<textField pattern="#0.00">
 					<reportElement x="457" y="6" width="94" height="15" uuid="e96f8d67-a7a0-4da1-b5b0-e009ec1dfe38"/>
 					<textElement textAlignment="Right">
 						<font isBold="true"/>
@@ -587,14 +587,14 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
 			</textField>
-			<textField pattern="">
+			<textField pattern="#0.00">
 				<reportElement x="374" y="2" width="76" height="15" uuid="9cbd8f96-8629-4f1b-abba-5a9d019683aa"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{weight}]]></textFieldExpression>
 			</textField>
-			<textField pattern="">
+			<textField pattern="#0.00">
 				<reportElement x="467" y="2" width="84" height="15" uuid="51d9e0c5-855c-4aea-9f5b-84c54abe9c99"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
@@ -692,7 +692,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</textElement>
 				<text><![CDATA[PESO TOTAL DO PEDIDO (kg)]]></text>
 			</staticText>
-			<textField pattern="#.###">
+			<textField pattern="#0.00">
 				<reportElement positionType="Float" x="457" y="5" width="94" height="15" printWhenGroupChanges="ItemGroup" uuid="d84564e2-586b-47bb-b59e-6210124345a4"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>

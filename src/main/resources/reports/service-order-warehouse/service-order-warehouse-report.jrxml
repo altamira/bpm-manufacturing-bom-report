@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-14T17:02:15 -->
+<!-- 2014-10-14T19:55:35 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-painting-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a6e9caa-30ea-47e3-b52c-ad1dd7ab559b">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="Title" class="java.lang.String">
@@ -526,7 +526,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#0.00">
 				<reportElement mode="Transparent" x="382" y="4" width="66" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="deb27e8c-70a3-49ff-83f7-38e0466be577">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -538,7 +538,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{weight}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#0.00">
 				<reportElement mode="Transparent" x="453" y="4" width="98" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="29608e82-74d6-45a1-93ef-bb51d7135d83"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="none">
@@ -616,7 +616,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</textElement>
 				<text><![CDATA[Total do Pedido:]]></text>
 			</staticText>
-			<textField pattern="">
+			<textField pattern="#0.00">
 				<reportElement positionType="Float" x="455" y="9" width="94" height="15" uuid="31c90f59-eb9c-45a5-a58f-41e96977949f"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
