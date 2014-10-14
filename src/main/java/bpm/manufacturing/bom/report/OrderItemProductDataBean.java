@@ -9,13 +9,7 @@ public class OrderItemProductDataBean {
 	private long weight;
 	private long itemCode;
 	private String itemDescription;
-	private String local;
-	private String viewed1;
-	private String load;
-	private String viewed2;
-	private String romaneio;
-	
-	
+
 	public String getCode() {
 		return code;
 	}
