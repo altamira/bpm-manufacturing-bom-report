@@ -4,7 +4,7 @@ public class OrderItemProductDataBean {
 	private String code;
 	private String color;
 	private String description;
-	private String note;
+	private String note = "";
 	private long quantity;
 	private long weight;
 	private long itemCode;
