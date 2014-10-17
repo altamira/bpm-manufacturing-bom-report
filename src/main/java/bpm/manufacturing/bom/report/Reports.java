@@ -181,10 +181,4 @@ public class Reports {
 		
 	}
 	
-	private String numberFormat(float number) {
-		Locale locale = new Locale("pt", "BR");
-		NumberFormat numberFormat = NumberFormat.getInstance(locale);
-		String formattedValue = numberFormat.format(number);
-		return formattedValue;
-	}
 }

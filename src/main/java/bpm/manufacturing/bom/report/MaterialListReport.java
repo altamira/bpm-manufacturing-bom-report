@@ -85,9 +85,7 @@ public OrderDataBean getData(String code) {
 	     	parameters.put("Comment", reportData.getComment());
 	     	ArrayList<OrderItemProductDataBean> dataList = new ArrayList<OrderItemProductDataBean>();
 	     	ArrayList<OrderItemDataBean> OrderItemList = reportData.getItems();
-	     	System.out.println(OrderItemList.size());
 	     	for (int i = 0; i < OrderItemList.size(); i++) {
-	     		System.out.println(i);
 				ArrayList<OrderItemProductDataBean> OrderItemProductList = OrderItemList.get(i).getParts();
 				for (int j = 0; j < OrderItemProductList.size(); j++) {
 					//System.out.println(OrderItemProductList.get(j).getQuantity());
