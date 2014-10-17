@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class OrderItemDataBean {
 	private long item;
 	private String description;
-	private ArrayList<OrderItemProductDataBean> product;
+	private ArrayList<OrderItemProductDataBean> parts;
 	
 	public long getItem() {
 		return item;
@@ -19,13 +19,13 @@ public class OrderItemDataBean {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public ArrayList<OrderItemProductDataBean> getProduct() {
-		return product;
+	public ArrayList<OrderItemProductDataBean> getParts() {
+		return parts;
 	}
-	public void setProduct(
-			ArrayList<OrderItemProductDataBean> product) {
-		this.product = product;
+	public void setParts(ArrayList<OrderItemProductDataBean> parts) {
+		this.parts = parts;
 	}
+
 	
 
 }

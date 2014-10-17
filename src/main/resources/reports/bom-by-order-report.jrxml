@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-09-22T22:58:55 -->
+<!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
+<!-- 2014-10-17T15:46:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -182,33 +182,33 @@
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="itemNo" class="java.lang.Long">
-		<fieldDescription><![CDATA[itemNo]]></fieldDescription>
+	<field name="itemCode" class="java.lang.Long">
+		<fieldDescription><![CDATA[itemCode]]></fieldDescription>
 	</field>
 	<field name="itemDescription" class="java.lang.String">
 		<fieldDescription><![CDATA[itemDescription]]></fieldDescription>
 	</field>
-	<field name="prodQty" class="java.lang.Double">
-		<fieldDescription><![CDATA[prodQty]]></fieldDescription>
+	<field name="quantity" class="java.lang.Double">
+		<fieldDescription><![CDATA[quantity]]></fieldDescription>
 	</field>
-	<field name="prodDescription" class="java.lang.String">
-		<fieldDescription><![CDATA[prodDescription]]></fieldDescription>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[description]]></fieldDescription>
 	</field>
-	<field name="prodColor" class="java.lang.String">
-		<fieldDescription><![CDATA[prodColor]]></fieldDescription>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[color]]></fieldDescription>
 	</field>
-	<field name="prodWeight" class="java.lang.Double">
-		<fieldDescription><![CDATA[prodWeight]]></fieldDescription>
+	<field name="weight" class="java.lang.Double">
+		<fieldDescription><![CDATA[weight]]></fieldDescription>
 	</field>
-	<field name="prodWeightTotal" class="java.lang.Double">
-		<fieldDescription><![CDATA[prodWeightTotal]]></fieldDescription>
-	</field>
-	<sortField name="itemNo"/>
-	<variable name="TotalWeight" class="java.lang.Float" resetType="Group" resetGroup="ItemGroup" calculation="Sum">
-		<variableExpression><![CDATA[$F{prodWeightTotal}]]></variableExpression>
+	<sortField name="itemCode"/>
+	<variable name="SubTotal" class="java.lang.Double" resetType="Group" resetGroup="ItemGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{quantity} * $F{weight}]]></variableExpression>
+	</variable>
+	<variable name="OrderTotalWeight" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{quantity} * $F{weight}]]></variableExpression>
 	</variable>
 	<group name="ItemGroup">
-		<groupExpression><![CDATA[$F{itemNo}]]></groupExpression>
+		<groupExpression><![CDATA[$F{itemCode}]]></groupExpression>
 		<groupHeader>
 			<band height="83">
 				<property name="local_mesure_unitheight" value="pixel"/>
@@ -363,7 +363,7 @@
 						<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
 					</textElement>
-					<textFieldExpression><![CDATA["ITEM " + $F{itemNo}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["ITEM " + $F{itemCode}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -424,7 +424,7 @@
 					<textElement textAlignment="Right">
 						<font isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$V{TotalWeight}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{SubTotal}]]></textFieldExpression>
 				</textField>
 				<line>
 					<reportElement x="454" y="-1" width="1" height="24" uuid="2fc688de-2f57-4b14-943a-ee07e7d3fb08">
@@ -766,35 +766,35 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{prodQty}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="66" y="2" width="215" height="15" uuid="895b627f-b13d-4923-ba24-28e4ced3069c"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{prodDescription}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="299" y="2" width="70" height="15" uuid="c4081f87-fd05-4128-ba17-a338ad91508a"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{prodColor}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#0.00">
 				<reportElement x="374" y="2" width="76" height="15" uuid="95c61021-eff5-4b83-bd35-c77a0efc8787"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{prodWeight}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{weight}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#0.00">
 				<reportElement x="466" y="2" width="84" height="15" uuid="3e26df1c-9ca0-4f4a-bc48-9534cbb1dbf1"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{prodWeightTotal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{quantity} * $F{weight}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="-4" y="0" width="1" height="18" uuid="2df6a710-759f-490d-983a-8af21c23289c">
@@ -894,7 +894,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{SumTotalWeight}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{OrderTotalWeight}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="454" y="1" width="1" height="20" uuid="763877b9-3260-4353-a877-9b290f00d223">

@@ -12,7 +12,7 @@ public class OrderDataBean {
 	private String comment;
 	private String project;
 	private String finish;
-	private ArrayList<OrderItemDataBean> item;
+	private ArrayList<OrderItemDataBean> items;
 	
 	public long getNumber() {
 		return number;
@@ -68,11 +68,11 @@ public class OrderDataBean {
 	public void setFinish(String finish) {
 		this.finish = finish;
 	}
-	public ArrayList<OrderItemDataBean> getItem() {
-		return item;
+	public ArrayList<OrderItemDataBean> getItems() {
+		return items;
 	}
-	public void setItem(ArrayList<OrderItemDataBean> item) {
-		this.item = item;
+	public void setItems(ArrayList<OrderItemDataBean> items) {
+		this.items = items;
 	}
 
 
