@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-17T16:55:42 -->
+<!-- 2014-10-17T22:59:51 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-production-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5816354c-f18c-41a3-af74-3a0505e5a0f2">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="Title" class="java.lang.String">
@@ -254,7 +254,7 @@
 	<pageHeader>
 		<band height="85" splitType="Stretch">
 			<line>
-				<reportElement x="-3" y="84" width="560" height="1" uuid="03008e0d-ed08-46fd-9b60-70746a8ce951">
+				<reportElement x="0" y="84" width="555" height="1" uuid="03008e0d-ed08-46fd-9b60-70746a8ce951">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} > 1]]></printWhenExpression>
@@ -364,6 +364,8 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 	</pageHeader>
 	<columnHeader>
 		<band height="85" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
 			<rectangle>
 				<reportElement key="" mode="Transparent" x="0" y="5" width="555" height="80" backcolor="rgba(255, 255, 255, 0.0)" uuid="0fc489a5-6e59-4419-a8b1-b98bfab20b55">
 					<property name="local_mesure_unitwidth" value="pixel"/>
