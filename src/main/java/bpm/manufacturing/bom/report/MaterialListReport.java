@@ -31,8 +31,8 @@ public class MaterialListReport {
 public OrderDataBean getData(String code) {
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://localhost:8081/bpm-manufacturing-bom-report/order_72201.json");
-		OrderDataBean OrderData = webTarget.path("").request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
+		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
+		OrderDataBean OrderData = webTarget.path(code).request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
 		return OrderData;
 	}
 
