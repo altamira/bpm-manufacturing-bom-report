@@ -28,8 +28,8 @@ public class ServiceOrderWarehouseReport {
 public OrderDataBean getData(String code) {
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://localhost:8080/bpm-manufacturing-bom-report/service-order-painting.json");
-		OrderDataBean OrderData = webTarget.path("").request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
+		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
+		OrderDataBean OrderData = webTarget.path(code).request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
 		return OrderData;
 	}
 
@@ -96,7 +96,7 @@ public OrderDataBean getData(String code) {
      	}
      	
      	//GET THE JASPER FILE
-		InputStream reportStream = getClass().getResourceAsStream("/reports/service-order-weld/service-order-weld-report.jasper");
+		InputStream reportStream = getClass().getResourceAsStream("/reports/service-order-warehouse/service-order-warehouse-report.jasper");
 		if (reportStream == null) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Não foi possivel carregar o relatorio !").build();
 		}
