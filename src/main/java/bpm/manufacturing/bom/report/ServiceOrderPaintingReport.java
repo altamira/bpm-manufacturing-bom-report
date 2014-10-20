@@ -29,8 +29,8 @@ public class ServiceOrderPaintingReport {
 	public OrderDataBean getData(String code) {
 			
 		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://localhost:8080/bpm-manufacturing-bom-report/service-order-painting.json");
-		OrderDataBean OrderData = webTarget.path("").request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
+		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
+		OrderDataBean OrderData = webTarget.path(code).request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
 		return OrderData;
 	}
 
@@ -95,7 +95,6 @@ public class ServiceOrderPaintingReport {
 			}
 			
      	}
-     	System.out.println(dataList.size());
      	//GET THE JASPER FILE
 		InputStream reportStream = getClass().getResourceAsStream("/reports/service-order-painting/service-order-painting-report.jasper");
 		if (reportStream == null) {
