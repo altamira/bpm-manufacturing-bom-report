@@ -28,8 +28,8 @@ public class ServiceOrderShippingReport {
 public OrderDataBean getData(String code) {
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://localhost:8080/bpm-manufacturing-bom-report/service-order-shipping.json");
-		OrderDataBean OrderData = webTarget.path("").request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
+		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
+		OrderDataBean OrderData = webTarget.path(code).request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
 		return OrderData;
 	}
 
