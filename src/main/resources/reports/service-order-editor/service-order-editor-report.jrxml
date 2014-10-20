@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-14T20:16:12 -->
+<!-- 2014-10-20T16:00:05 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-production-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5816354c-f18c-41a3-af74-3a0505e5a0f2">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="Title" class="java.lang.String">
@@ -42,7 +42,7 @@
 	<field name="itemDescription" class="java.lang.String">
 		<fieldDescription><![CDATA[itemDescription]]></fieldDescription>
 	</field>
-	<field name="quantity" class="java.lang.Long">
+	<field name="quantity" class="java.lang.Double">
 		<fieldDescription><![CDATA[quantity]]></fieldDescription>
 	</field>
 	<field name="description" class="java.lang.String">
@@ -51,7 +51,7 @@
 	<field name="color" class="java.lang.String">
 		<fieldDescription><![CDATA[color]]></fieldDescription>
 	</field>
-	<field name="weight" class="java.lang.Long">
+	<field name="weight" class="java.lang.Double">
 		<fieldDescription><![CDATA[weight]]></fieldDescription>
 	</field>
 	<variable name="SubTotal" class="java.lang.Double" resetType="Group" resetGroup="ItemGroup" calculation="Sum">
@@ -364,6 +364,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 	</pageHeader>
 	<columnHeader>
 		<band height="85" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
 			<rectangle>
 				<reportElement key="" mode="Transparent" x="0" y="5" width="555" height="80" backcolor="rgba(255, 255, 255, 0.0)" uuid="0fc489a5-6e59-4419-a8b1-b98bfab20b55">
 					<property name="local_mesure_unitwidth" value="pixel"/>

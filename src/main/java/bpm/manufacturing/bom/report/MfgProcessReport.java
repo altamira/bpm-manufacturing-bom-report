@@ -27,8 +27,8 @@ public class MfgProcessReport {
 	public MfgProcessDataBean getData(String code) {
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://localhost:8080/bpm-manufacturing-bom-report/mfg-process.json");
-		MfgProcessDataBean mfgProcessData = webTarget.path("").request(MediaType.APPLICATION_JSON).get(MfgProcessDataBean.class);
+		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/process/");
+		MfgProcessDataBean mfgProcessData = webTarget.path(code).request(MediaType.APPLICATION_JSON).get(MfgProcessDataBean.class);
 		return mfgProcessData;
 	}
 	
@@ -64,6 +64,7 @@ public class MfgProcessReport {
 			}
             revisionByData = revisionByData + revision.get(i).getBy()  + newLineText;
             revisionDateData = revisionDateData + new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(revision.get(i).getDate())) + newLineText;
+
         }
 		parameters.put("RevisionByData", revisionByData);
      	parameters.put("RevisionDateData", revisionDateData);
@@ -78,9 +79,10 @@ public class MfgProcessReport {
 			String outputMaterialList = "";
 			String outputQtyList = "";
 			String descriptionOperation = mfgOperations.get(i).getDescription();
-			String scetchOfOperation = mfgOperations.get(i).getCroqui();
+			String scetchOfOperation = mfgOperations.get(i).getSketch();
 			
-            mfgInput = mfgOperations.get(i).getInput();
+            mfgInput = mfgOperations.get(i).getConsume();
+
     		for (int j = 0; j < mfgInput.size(); j++) {
     			String newLineText = "\r\n";
     			if(j == (mfgInput.size() - 1)) {
@@ -93,7 +95,7 @@ public class MfgProcessReport {
     			
             }
     		
-    		List<MfgMaterial> mfgOutput = mfgOperations.get(i).getOutput();
+    		List<MfgMaterial> mfgOutput = mfgOperations.get(i).getProduce();
     		for (int j = 0; j < mfgOutput.size(); j++) {
     			String newLineText = "\r\n";
     			if(j == (mfgOutput.size() - 1)) {

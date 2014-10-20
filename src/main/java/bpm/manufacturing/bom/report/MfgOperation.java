@@ -6,21 +6,9 @@ public class MfgOperation {
 	private int sequence;
 	private String name;
 	private String description;
-	private List<MfgMaterial> input;
-	
-	public List<MfgMaterial> getInput() {
-		return input;
-	}
-	public void setInput(List<MfgMaterial> input) {
-		this.input = input;
-	}
-	public List<MfgMaterial> getOutput() {
-		return output;
-	}
-	public void setOutput(List<MfgMaterial> output) {
-		this.output = output;
-	}
-	private List<MfgMaterial> output;
+	private List<MfgMaterial> consume;
+	private List<MfgMaterial> produce;
+	private String sketch;
 	
 	public int getSequence() {
 		return sequence;
@@ -40,12 +28,23 @@ public class MfgOperation {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCroqui() {
-		return croqui;
+	public String getSketch() {
+		return sketch;
 	}
-	public void setCroqui(String croqui) {
-		this.croqui = croqui;
+	public void setSketch(String sketch) {
+		this.sketch = sketch;
 	}
-	private String croqui;
+	public List<MfgMaterial> getConsume() {
+		return consume;
+	}
+	public void setConsume(List<MfgMaterial> consume) {
+		this.consume = consume;
+	}
+	public List<MfgMaterial> getProduce() {
+		return produce;
+	}
+	public void setProduce(List<MfgMaterial> produce) {
+		this.produce = produce;
+	}
 
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 5.6.1.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-09-24T19:08:42 -->
+<!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
+<!-- 2014-10-20T19:30:29 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mfg-process" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5f5835b1-2afc-4637-b714-8789adf84697">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="LogoImage" class="java.awt.image.BufferedImage">
@@ -629,10 +629,11 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 		</band>
 		<band height="54" splitType="Prevent">
 			<rectangle>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="4" width="555" height="50" uuid="84c720c8-eea7-4f96-8785-3ae6f193e438">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="4" width="555" height="47" uuid="84c720c8-eea7-4f96-8785-3ae6f193e438">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
@@ -652,7 +653,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
@@ -719,7 +720,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
@@ -730,7 +731,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>

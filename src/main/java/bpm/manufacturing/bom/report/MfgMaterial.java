@@ -3,7 +3,7 @@ package bpm.manufacturing.bom.report;
 public class MfgMaterial {
 	private String code;
 	private String description;
-	private float quantity;
+	private double quantity;
 	private String unit;
 	
 	public String getCode() {
@@ -18,10 +18,10 @@ public class MfgMaterial {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public float getQuantity() {
+	public double getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(float quantity) {
+	public void setQuantity(double quantity) {
 		this.quantity = quantity;
 	}
 	public String getUnit() {
