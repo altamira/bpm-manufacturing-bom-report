@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-21T18:18:12 -->
+<!-- 2014-10-21T20:14:35 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-production-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5816354c-f18c-41a3-af74-3a0505e5a0f2">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="Title" class="java.lang.String">
@@ -59,6 +59,9 @@
 	</variable>
 	<variable name="OrderTotalWeight" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{weight}]]></variableExpression>
+	</variable>
+	<variable name="UnitWeight" class="java.lang.Double" resetType="Group" resetGroup="ItemGroup">
+		<variableExpression><![CDATA[$F{weight}/$F{quantity}]]></variableExpression>
 	</variable>
 	<group name="ItemGroup">
 		<groupExpression><![CDATA[$F{itemCode}]]></groupExpression>
@@ -596,7 +599,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{SubTotal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{UnitWeight}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#0.00">
 				<reportElement x="475" y="2" width="75" height="15" uuid="51d9e0c5-855c-4aea-9f5b-84c54abe9c99">
