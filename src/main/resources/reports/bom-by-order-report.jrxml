@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-20T20:02:55 -->
+<!-- 2014-10-21T13:45:10 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -202,10 +202,13 @@
 	</field>
 	<sortField name="itemCode"/>
 	<variable name="SubTotal" class="java.lang.Double" resetType="Group" resetGroup="ItemGroup" calculation="Sum">
-		<variableExpression><![CDATA[$F{quantity} * $F{weight}]]></variableExpression>
+		<variableExpression><![CDATA[$F{weight}]]></variableExpression>
 	</variable>
 	<variable name="OrderTotalWeight" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[$F{quantity} * $F{weight}]]></variableExpression>
+		<variableExpression><![CDATA[$F{weight}]]></variableExpression>
+	</variable>
+	<variable name="IndividualWeight" class="java.lang.Double" resetType="Group" resetGroup="ItemGroup">
+		<variableExpression><![CDATA[$F{weight}/$F{quantity}]]></variableExpression>
 	</variable>
 	<group name="ItemGroup">
 		<groupExpression><![CDATA[$F{itemCode}]]></groupExpression>
@@ -793,14 +796,14 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{weight}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{IndividualWeight}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#0.00">
 				<reportElement x="470" y="2" width="84" height="15" uuid="3e26df1c-9ca0-4f4a-bc48-9534cbb1dbf1"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{quantity} * $F{weight}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{weight}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="-4" y="0" width="1" height="18" uuid="2df6a710-759f-490d-983a-8af21c23289c">
