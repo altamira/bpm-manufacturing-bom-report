@@ -6,11 +6,11 @@
 	<groupId>bpm.manufacturing.bom.report</groupId>
 	<artifactId>bpm-manufacturing-bom-report</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.2.1-SNAPSHOT</version>
 	<name>bpm-manufacturing-bom-report</name>
 
 	<build>
-		<finalName>bpm-manufacturing-bom-report</finalName>
+		<finalName>>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
