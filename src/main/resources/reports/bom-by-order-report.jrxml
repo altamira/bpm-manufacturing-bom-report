@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-21T16:36:05 -->
+<!-- 2014-10-22T17:10:41 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="f6545027-7aba-4eef-bfa2-70dbc183ce81">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
@@ -237,7 +237,7 @@
 					<textFieldExpression><![CDATA[$F{itemDescription}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement positionType="Float" x="-1" y="63" width="60" height="15" uuid="9f1f8956-fd84-4749-b2fe-bb6cd7c6a27c">
+					<reportElement positionType="Float" x="-1" y="63" width="50" height="15" uuid="9f1f8956-fd84-4749-b2fe-bb6cd7c6a27c">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
@@ -245,11 +245,11 @@
 					<text><![CDATA[Qtde.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement positionType="Float" x="65" y="63" width="100" height="15" uuid="e57619a8-69df-44a9-992e-f1e82e4bf3bc"/>
+					<reportElement positionType="Float" x="56" y="63" width="124" height="15" uuid="e57619a8-69df-44a9-992e-f1e82e4bf3bc"/>
 					<text><![CDATA[Descrição do Material]]></text>
 				</staticText>
 				<staticText>
-					<reportElement positionType="Float" x="342" y="63" width="65" height="15" uuid="55667d10-cf2c-4167-91fa-ab976ba0b9ea">
+					<reportElement positionType="Float" x="359" y="63" width="55" height="15" uuid="55667d10-cf2c-4167-91fa-ab976ba0b9ea">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
@@ -257,7 +257,10 @@
 					<text><![CDATA[Cor]]></text>
 				</staticText>
 				<staticText>
-					<reportElement positionType="Float" x="412" y="63" width="56" height="15" uuid="2ac8fea7-bbd8-4631-9822-b1a9787f9683"/>
+					<reportElement positionType="Float" x="420" y="63" width="45" height="15" uuid="2ac8fea7-bbd8-4631-9822-b1a9787f9683">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<textElement textAlignment="Right"/>
 					<text><![CDATA[Peso]]></text>
 				</staticText>
@@ -278,7 +281,7 @@
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" x="61" y="58" width="1" height="24" uuid="0f615959-8dc4-4cb8-8ee0-247dbb3fcb1f">
+					<reportElement positionType="Float" x="53" y="58" width="1" height="24" uuid="0f615959-8dc4-4cb8-8ee0-247dbb3fcb1f">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unitheight" value="pixel"/>
@@ -289,7 +292,7 @@
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" x="341" y="58" width="1" height="24" uuid="52896cc3-4c0f-4dff-a31e-3db336a49198">
+					<reportElement positionType="Float" x="356" y="58" width="1" height="24" uuid="52896cc3-4c0f-4dff-a31e-3db336a49198">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unitheight" value="pixel"/>
@@ -300,7 +303,7 @@
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" x="408" y="58" width="1" height="24" uuid="5aea8dbe-7d0a-461f-9909-822876977e88">
+					<reportElement positionType="Float" x="416" y="58" width="1" height="24" uuid="5aea8dbe-7d0a-461f-9909-822876977e88">
 						<property name="local_mesure_unitwidth" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="local_mesure_unitheight" value="pixel"/>
@@ -768,21 +771,24 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 	<detail>
 		<band height="18">
 			<textField pattern="#.###">
-				<reportElement x="-1" y="2" width="60" height="15" uuid="0fda607b-be03-4d8b-a813-695a5430d1eb"/>
-				<textElement textAlignment="Center">
+				<reportElement x="-1" y="2" width="50" height="15" uuid="0fda607b-be03-4d8b-a813-695a5430d1eb">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="66" y="2" width="274" height="15" uuid="895b627f-b13d-4923-ba24-28e4ced3069c"/>
+				<reportElement x="57" y="2" width="298" height="15" uuid="895b627f-b13d-4923-ba24-28e4ced3069c"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="342" y="2" width="65" height="15" uuid="c4081f87-fd05-4128-ba17-a338ad91508a">
+				<reportElement x="359" y="2" width="55" height="15" uuid="c4081f87-fd05-4128-ba17-a338ad91508a">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -792,7 +798,9 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#0.00">
-				<reportElement x="408" y="2" width="60" height="15" uuid="95c61021-eff5-4b83-bd35-c77a0efc8787"/>
+				<reportElement x="420" y="2" width="45" height="15" uuid="95c61021-eff5-4b83-bd35-c77a0efc8787">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
@@ -817,7 +825,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="61" y="0" width="1" height="18" uuid="84b73d82-d5b4-42de-94ff-22e02c615bca">
+				<reportElement stretchType="RelativeToBandHeight" x="53" y="0" width="1" height="18" uuid="84b73d82-d5b4-42de-94ff-22e02c615bca">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -828,7 +836,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="341" y="0" width="1" height="18" uuid="dc47da24-a1a2-4aef-b0c5-0629d1be1895">
+				<reportElement stretchType="RelativeToBandHeight" x="356" y="0" width="1" height="18" uuid="dc47da24-a1a2-4aef-b0c5-0629d1be1895">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -839,7 +847,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="408" y="0" width="1" height="18" uuid="f51151ab-7a74-4030-b323-789b902d5b66">
+				<reportElement stretchType="RelativeToBandHeight" x="416" y="0" width="1" height="18" uuid="f51151ab-7a74-4030-b323-789b902d5b66">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
