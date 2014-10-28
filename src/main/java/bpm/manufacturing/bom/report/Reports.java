@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
  * Root resource (exposed at "reports" path)
  */
 
-@Path("reports")
+@Path("manufacturing")
 public class Reports {
 	
 	/**
@@ -25,12 +25,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/materials/{orderId}")
+	@GET @Path("/bom/{id}")
     @Produces("application/pdf") 
-    public  Response materialListReport(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("orderId") String orderId) throws ServletException, IOException {
+    public  Response materialListReport(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		MaterialListReport materialListReport = new MaterialListReport();
-		return materialListReport.getReport(orderId);	
+		return materialListReport.getReport(id);	
 		
 	}
 
