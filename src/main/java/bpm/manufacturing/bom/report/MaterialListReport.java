@@ -27,20 +27,25 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class MaterialListReport {
 	
-	
-public OrderDataBean getData(String code) {
+    /**
+    *
+    * @param bom id
+    * @return object OrderData
+    * @throws 
+    */
+	public OrderDataBean getData(String id) {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
-		OrderDataBean OrderData = webTarget.path(code).request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
+		OrderDataBean OrderData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
 		return OrderData;
 	}
 
-	public Response getReport(String code) throws ServletException, IOException{
+	public Response getReport(String id) throws ServletException, IOException{
 		try {
 			JasperPrint jasperPrint;
 			byte[] pdf = null;
-			OrderDataBean reportData = this.getData(code);
+			OrderDataBean reportData = this.getData(id);
 			long createdTimeStamp = (long) reportData.getCreated();
 			long deliveryTimeStamp = (long) reportData.getDelivery();
 			
@@ -70,7 +75,7 @@ public OrderDataBean getData(String code) {
 			
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			//SET THE PARAMETERS FOR JASPER REPORT
-	        parameters.put("Title", "Lista de Material - " + code);
+	        parameters.put("Title", "Lista de Material - " + reportData.getNumber());
 	     	parameters.put("UserName", "MASTER");
 	     	parameters.put("Customer", reportData.getCustomer());
 	     	parameters.put("Representative", reportData.getRepresentative());
