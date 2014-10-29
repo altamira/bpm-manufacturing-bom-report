@@ -1,6 +1,5 @@
 package bpm.manufacturing.bom.report;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -23,7 +21,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
-public class ServiceOrderEditorReport {
+public class ServiceOrderEditorReport extends ReportConfig {
 	
 public OrderDataBean getData(String id) {
 		
@@ -118,17 +116,4 @@ public OrderDataBean getData(String id) {
 		return null;
 	}
 	
-	public BufferedImage getLogo() {
-		//GET THE LOGO FILE FROM RESOURCE
-		InputStream reportLogo = getClass().getResourceAsStream("/images/report-header-logo.png");
-		
-		 BufferedImage imfg = null;
-		 try {
-		     //InputStream in = new ByteArrayInputStream(requestReportAltamiraimage);
-		     imfg = ImageIO.read(reportLogo);
-		 } catch (Exception e1) {
-		     e1.printStackTrace();
-		 }
-		 return imfg;
-	}
 }
