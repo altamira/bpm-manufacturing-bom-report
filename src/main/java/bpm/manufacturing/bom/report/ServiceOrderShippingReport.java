@@ -25,19 +25,19 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class ServiceOrderShippingReport {
 	
-public OrderDataBean getData(String code) {
+public OrderDataBean getData(String id) {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/bom/");
-		OrderDataBean OrderData = webTarget.path(code).request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
+		OrderDataBean OrderData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(OrderDataBean.class);
 		return OrderData;
 	}
 
-	public Response getReport(String code) {
+	public Response getReport(String id) {
 		JasperPrint jasperPrint;
 		byte[] pdf = null;
 		
-		OrderDataBean reportData = this.getData(code);
+		OrderDataBean reportData = this.getData(id);
 		
 		long createdTimeStamp = (long) reportData.getCreated();
 		long deliveryTimeStamp = (long) reportData.getDelivery();

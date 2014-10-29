@@ -42,12 +42,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/mfg-process/{code}")
+	@GET @Path("/process/{id}")
     @Produces("application/pdf") 
-    public  Response manufacturingProcess(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response manufacturingProcess(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 	
 		MfgProcessReport mfgProcessReport = new MfgProcessReport();
-		return mfgProcessReport.getReport(paramCode);	
+		return mfgProcessReport.getReport(id);	
 		
 	}
 	
@@ -74,12 +74,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/service-order-painting/{code}")
+	@GET @Path("/order/{id}/painting")
     @Produces("application/pdf") 
-    public  Response serviceOrderPainting(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response serviceOrderPainting(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		ServiceOrderPaintingReport serviceOrderPaintingReport = new ServiceOrderPaintingReport();
-		return serviceOrderPaintingReport.getReport(paramCode);	
+		return serviceOrderPaintingReport.getReport(id);	
 		
 	}
 	
@@ -90,12 +90,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/service-order-production/{code}")
+	@GET @Path("/order/{id}/production")
     @Produces("application/pdf") 
-    public  Response serviceOrderProduction(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response serviceOrderProduction(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		ServiceOrderProductionReport serviceOrderProductionReport = new ServiceOrderProductionReport();
-		return serviceOrderProductionReport.getReport(paramCode);	
+		return serviceOrderProductionReport.getReport(id);	
 		
 	}
 	
@@ -106,12 +106,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/service-order-shipping/{code}")
+	@GET @Path("/order/{id}/shipping")
     @Produces("application/pdf") 
-    public  Response serviceOrderShipping(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response serviceOrderShipping(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		ServiceOrderShippingReport serviceOrderShippingReport = new ServiceOrderShippingReport();
-		return serviceOrderShippingReport.getReport(paramCode);	
+		return serviceOrderShippingReport.getReport(id);	
 		
 	}
 	
@@ -122,12 +122,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/service-order-editor/{code}")
+	@GET @Path("/order/{id}/editor")
     @Produces("application/pdf") 
-    public  Response serviceOrderEditor(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response serviceOrderEditor(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		ServiceOrderEditorReport serviceOrderEditorReport = new ServiceOrderEditorReport();
-		return serviceOrderEditorReport.getReport(paramCode);	
+		return serviceOrderEditorReport.getReport(id);	
 		
 	}
 	
@@ -138,12 +138,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/service-order-weld/{code}")
+	@GET @Path("/order/{id}/weld")
     @Produces("application/pdf") 
-    public  Response serviceOrderWeld(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response serviceOrderWeld(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		ServiceOrderWeldReport serviceOrderWeldReport = new ServiceOrderWeldReport();
-		return serviceOrderWeldReport.getReport(paramCode);	
+		return serviceOrderWeldReport.getReport(id);	
 		
 	}
 	
@@ -154,12 +154,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/service-order-warehouse/{code}")
+	@GET @Path("/order/{id}/warehouse")
     @Produces("application/pdf") 
-    public  Response serviceOrderWarehouse(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response serviceOrderWarehouse(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		ServiceOrderWarehouseReport serviceOrderWarehouseReport = new ServiceOrderWarehouseReport();
-		return serviceOrderWarehouseReport.getReport(paramCode);	
+		return serviceOrderWarehouseReport.getReport(id);	
 		
 	}
 	
@@ -170,12 +170,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/service-order-transportation/{code}")
+	@GET @Path("/order/{id}/transportation")
     @Produces("application/pdf") 
-    public  Response serviceOrderTransportation(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response serviceOrderTransportation(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		ServiceOrderTransportationReport serviceOrderTransportationReport = new ServiceOrderTransportationReport();
-		return serviceOrderTransportationReport.getReport(paramCode);	
+		return serviceOrderTransportationReport.getReport(id);	
 		
 	}
 	

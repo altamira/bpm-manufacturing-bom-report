@@ -24,21 +24,21 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class MfgProcessReport {
 	
-	public MfgProcessDataBean getData(String code) {
+	public MfgProcessDataBean getData(String id) {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target("http://data.altamira.com.br/manufacturing/process/");
-		MfgProcessDataBean mfgProcessData = webTarget.path(code).request(MediaType.APPLICATION_JSON).get(MfgProcessDataBean.class);
+		MfgProcessDataBean mfgProcessData = webTarget.path(id).request(MediaType.APPLICATION_JSON).get(MfgProcessDataBean.class);
 		return mfgProcessData;
 	}
 	
-	public Response getReport(String code) {
+	public Response getReport(String id) {
 		
 		ArrayList<MfgOperationDisplay> dataList = new ArrayList<MfgOperationDisplay>();
 		JasperPrint jasperPrint;
 		byte[] pdf = null;
 		
-		MfgProcessDataBean mfgReportData = this.getData(code);
+		MfgProcessDataBean mfgReportData = this.getData(id);
 		List<MfgMaterial> mfgInput = null;
 		String revisionByData = "";
 		String revisionDateData = "";
