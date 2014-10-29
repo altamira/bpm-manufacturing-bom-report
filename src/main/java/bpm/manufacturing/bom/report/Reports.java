@@ -170,12 +170,12 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/mfg-order/{code}")
+	@GET @Path("/packinglist/{id}")
     @Produces("application/pdf") 
-    public  Response manufacturingOrder(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("code") String paramCode) throws ServletException, IOException {
+    public  Response manufacturingOrder(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
 		MfgOrderReport mfgOrderReport = new MfgOrderReport();
-		return mfgOrderReport.getReport(paramCode);	
+		return mfgOrderReport.getReport(id);	
 		
 	}
 	
