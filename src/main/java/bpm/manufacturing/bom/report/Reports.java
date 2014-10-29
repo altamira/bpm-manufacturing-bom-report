@@ -25,7 +25,7 @@ public class Reports {
      * @return 
      *
      */
-	@GET @Path("/bom/{id}")
+	@GET @Path("/bom/{id}/checklist")
     @Produces("application/pdf") 
     public  Response materialListReport(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
 		
@@ -34,6 +34,118 @@ public class Reports {
 		
 	}
 
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/bom/{id}/painting")
+    @Produces("application/pdf") 
+    public  Response serviceOrderPainting(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
+		
+		ServiceOrderPaintingReport serviceOrderPaintingReport = new ServiceOrderPaintingReport();
+		return serviceOrderPaintingReport.getReport(id);	
+		
+	}
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/bom/{id}/production")
+    @Produces("application/pdf") 
+    public  Response serviceOrderProduction(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
+		
+		ServiceOrderProductionReport serviceOrderProductionReport = new ServiceOrderProductionReport();
+		return serviceOrderProductionReport.getReport(id);	
+		
+	}
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/bom/{id}/shipping")
+    @Produces("application/pdf") 
+    public  Response serviceOrderShipping(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
+		
+		ServiceOrderShippingReport serviceOrderShippingReport = new ServiceOrderShippingReport();
+		return serviceOrderShippingReport.getReport(id);	
+		
+	}
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/bom/{id}/editor")
+    @Produces("application/pdf") 
+    public  Response serviceOrderEditor(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
+		
+		ServiceOrderEditorReport serviceOrderEditorReport = new ServiceOrderEditorReport();
+		return serviceOrderEditorReport.getReport(id);	
+		
+	}
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/bom/{id}/weld")
+    @Produces("application/pdf") 
+    public  Response serviceOrderWeld(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
+		
+		ServiceOrderWeldReport serviceOrderWeldReport = new ServiceOrderWeldReport();
+		return serviceOrderWeldReport.getReport(id);	
+		
+	}
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/bom/{id}/warehouse")
+    @Produces("application/pdf") 
+    public  Response serviceOrderWarehouse(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
+		
+		ServiceOrderWarehouseReport serviceOrderWarehouseReport = new ServiceOrderWarehouseReport();
+		return serviceOrderWarehouseReport.getReport(id);	
+		
+	}
+	
+	/**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "application/pdf" media type.
+	 * @return 
+     * @return 
+     *
+     */
+	@GET @Path("/bom/{id}/transportation")
+    @Produces("application/pdf") 
+    public  Response serviceOrderTransportation(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
+		
+		ServiceOrderTransportationReport serviceOrderTransportationReport = new ServiceOrderTransportationReport();
+		return serviceOrderTransportationReport.getReport(id);	
+		
+	}
 	
 	/**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -64,118 +176,6 @@ public class Reports {
 		
 		MfgOrderReport mfgOrderReport = new MfgOrderReport();
 		return mfgOrderReport.getReport(paramCode);	
-		
-	}
-	
-	/**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "application/pdf" media type.
-	 * @return 
-     * @return 
-     *
-     */
-	@GET @Path("/order/{id}/painting")
-    @Produces("application/pdf") 
-    public  Response serviceOrderPainting(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
-		
-		ServiceOrderPaintingReport serviceOrderPaintingReport = new ServiceOrderPaintingReport();
-		return serviceOrderPaintingReport.getReport(id);	
-		
-	}
-	
-	/**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "application/pdf" media type.
-	 * @return 
-     * @return 
-     *
-     */
-	@GET @Path("/order/{id}/production")
-    @Produces("application/pdf") 
-    public  Response serviceOrderProduction(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
-		
-		ServiceOrderProductionReport serviceOrderProductionReport = new ServiceOrderProductionReport();
-		return serviceOrderProductionReport.getReport(id);	
-		
-	}
-	
-	/**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "application/pdf" media type.
-	 * @return 
-     * @return 
-     *
-     */
-	@GET @Path("/order/{id}/shipping")
-    @Produces("application/pdf") 
-    public  Response serviceOrderShipping(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
-		
-		ServiceOrderShippingReport serviceOrderShippingReport = new ServiceOrderShippingReport();
-		return serviceOrderShippingReport.getReport(id);	
-		
-	}
-	
-	/**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "application/pdf" media type.
-	 * @return 
-     * @return 
-     *
-     */
-	@GET @Path("/order/{id}/editor")
-    @Produces("application/pdf") 
-    public  Response serviceOrderEditor(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
-		
-		ServiceOrderEditorReport serviceOrderEditorReport = new ServiceOrderEditorReport();
-		return serviceOrderEditorReport.getReport(id);	
-		
-	}
-	
-	/**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "application/pdf" media type.
-	 * @return 
-     * @return 
-     *
-     */
-	@GET @Path("/order/{id}/weld")
-    @Produces("application/pdf") 
-    public  Response serviceOrderWeld(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
-		
-		ServiceOrderWeldReport serviceOrderWeldReport = new ServiceOrderWeldReport();
-		return serviceOrderWeldReport.getReport(id);	
-		
-	}
-	
-	/**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "application/pdf" media type.
-	 * @return 
-     * @return 
-     *
-     */
-	@GET @Path("/order/{id}/warehouse")
-    @Produces("application/pdf") 
-    public  Response serviceOrderWarehouse(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
-		
-		ServiceOrderWarehouseReport serviceOrderWarehouseReport = new ServiceOrderWarehouseReport();
-		return serviceOrderWarehouseReport.getReport(id);	
-		
-	}
-	
-	/**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "application/pdf" media type.
-	 * @return 
-     * @return 
-     *
-     */
-	@GET @Path("/order/{id}/transportation")
-    @Produces("application/pdf") 
-    public  Response serviceOrderTransportation(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
-		
-		ServiceOrderTransportationReport serviceOrderTransportationReport = new ServiceOrderTransportationReport();
-		return serviceOrderTransportationReport.getReport(id);	
 		
 	}
 	

@@ -6,7 +6,7 @@
 	<groupId>bpm.manufacturing.bom.report</groupId>
 	<artifactId>bpm-manufacturing-bom-report</artifactId>
 	<packaging>war</packaging>
-	<version>0.2.2-SNAPSHOT</version>
+	<version>0.2.3-SNAPSHOT</version>
 	<name>bpm-manufacturing-bom-report</name>
 
 	<build>
