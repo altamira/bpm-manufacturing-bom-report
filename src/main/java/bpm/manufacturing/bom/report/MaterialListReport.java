@@ -121,5 +121,84 @@ public class MaterialListReport extends ReportConfig {
     	}
 		return null;
 	}
+	
+	public JasperPrint getPDF(String id) throws ServletException, IOException{
+		try {
+			JasperPrint jasperPrint;
+			byte[] pdf = null;
+			OrderDataBean reportData = this.getData(id);
+			long createdTimeStamp = (long) reportData.getCreated();
+			long deliveryTimeStamp = (long) reportData.getDelivery();
+			
+			//FORMATING ORDER DATE
+			String orderDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date(createdTimeStamp));
+			
+			//FORMATING DELIVERT DATE
+			String deliveryDateDisplay = new java.text.SimpleDateFormat("w/yyyy").format(new java.util.Date(deliveryTimeStamp));
+			String weekString = new java.text.SimpleDateFormat("w").format(new java.util.Date(deliveryTimeStamp));
+			int weekNo = Integer.parseInt( weekString );
+			String yearString = new java.text.SimpleDateFormat("yyyy").format(new java.util.Date(deliveryTimeStamp));
+			int yearNo = Integer.parseInt( yearString );
+	
+			// CALCULATE THE 1ST DAY AND LAST DAY OF THE WEEK
+			Calendar calendar = Calendar.getInstance();
+			calendar.clear();
+			calendar.set(Calendar.WEEK_OF_YEAR, weekNo);
+			calendar.set(Calendar.YEAR, yearNo);
+			// Get the FIRST day of week.
+			Date date = calendar.getTime();
+			String startDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(date);
+			// Get the LAST day of week.
+			calendar.add(Calendar.DATE, 6);
+			Date endDate = calendar.getTime();
+			String endDateDisplay = new java.text.SimpleDateFormat("dd/MM/yyyy").format(endDate);
+			String deliveryWeekDisplay = startDateDisplay + " a " + endDateDisplay;
+			
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			//SET THE PARAMETERS FOR JASPER REPORT
+	        parameters.put("Title", "Lista de Material - " + reportData.getNumber());
+	     	parameters.put("UserName", "MASTER");
+	     	parameters.put("Customer", reportData.getCustomer());
+	     	parameters.put("Representative", reportData.getRepresentative());
+	     	parameters.put("OrderID", reportData.getNumber());
+	     	parameters.put("LogoImage", this.getLogo());
+	     	parameters.put("DateRequest", orderDateDisplay);
+	     	parameters.put("DeliveryTime", deliveryDateDisplay);
+	     	parameters.put("DeliveryWeek", deliveryWeekDisplay);
+	     	parameters.put("NoBudget", reportData.getQuotation());
+	     	parameters.put("NoProject", reportData.getProject());
+	     	parameters.put("Finish", reportData.getFinish());
+	     	parameters.put("Comment", reportData.getComment());
+	     	ArrayList<OrderItemProductDataBean> dataList = new ArrayList<OrderItemProductDataBean>();
+	     	ArrayList<OrderItemDataBean> OrderItemList = reportData.getItems();
+	     	for (int i = 0; i < OrderItemList.size(); i++) {
+				ArrayList<OrderItemProductDataBean> OrderItemProductList = OrderItemList.get(i).getParts();
+				for (int j = 0; j < OrderItemProductList.size(); j++) {
+					//System.out.println(OrderItemProductList.get(j).getQuantity());
+					OrderItemProductList.get(j).setItemCode(OrderItemList.get(i).getItem());
+					OrderItemProductList.get(j).setItemDescription(OrderItemList.get(i).getDescription());
+					dataList.add(OrderItemProductList.get(j));
+				}
+				
+	     	}
+	     	
+	     	//GET THE JASPER FILE
+			InputStream reportStream = getClass().getResourceAsStream("/reports/bom-by-order-report.jasper");
+			if (reportStream == null) {
+				return null;
+			}
+		
+			//PRINT THE PDF REPORT
+
+    		JRBeanCollectionDataSource beanColDataSource =  new JRBeanCollectionDataSource(dataList);
+    		jasperPrint = JasperFillManager.fillReport(reportStream, parameters, beanColDataSource);
+    		
+            return jasperPrint;
+    	} catch (JRException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+		return null;
+	}
 
 }
