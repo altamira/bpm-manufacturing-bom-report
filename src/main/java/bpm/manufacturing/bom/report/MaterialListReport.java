@@ -125,7 +125,6 @@ public class MaterialListReport extends ReportConfig {
 	public JasperPrint getPDF(String id) throws ServletException, IOException{
 		try {
 			JasperPrint jasperPrint;
-			byte[] pdf = null;
 			OrderDataBean reportData = this.getData(id);
 			long createdTimeStamp = (long) reportData.getCreated();
 			long deliveryTimeStamp = (long) reportData.getDelivery();

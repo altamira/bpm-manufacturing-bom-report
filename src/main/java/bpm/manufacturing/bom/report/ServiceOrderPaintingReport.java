@@ -119,7 +119,6 @@ public class ServiceOrderPaintingReport extends ReportConfig {
 	
 	public JasperPrint getPDF(String id) throws ServletException, IOException {
 		JasperPrint jasperPrint;
-		byte[] pdf = null;
 		
 		OrderDataBean reportData = this.getData(id);
 		

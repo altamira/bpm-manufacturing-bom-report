@@ -118,7 +118,6 @@ public class ServiceOrderProductionReport extends ReportConfig {
 	
 	public JasperPrint getPDF(String id) {
 		JasperPrint jasperPrint;
-		byte[] pdf = null;
 		
 		OrderDataBean reportData = this.getData(id);
 		
