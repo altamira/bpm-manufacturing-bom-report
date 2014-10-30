@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-21T15:11:08 -->
+<!-- 2014-10-30T18:17:43 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="service-order-painting-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a6e9caa-30ea-47e3-b52c-ad1dd7ab559b">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="Title" class="java.lang.String">
@@ -531,7 +531,7 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<rectangle>
-				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="555" height="20" uuid="9e9dc36f-f1af-4070-8cd7-e303f33e4873">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="555" height="20" uuid="9e9dc36f-f1af-4070-8cd7-e303f33e4873">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
