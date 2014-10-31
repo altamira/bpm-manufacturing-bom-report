@@ -1,5 +1,7 @@
 package bpm.manufacturing.bom.report;
 
+import java.awt.image.BufferedImage;
+
 public class MfgOperationDisplay {
 	private String name;
 	private String inputCodeList;
@@ -9,7 +11,7 @@ public class MfgOperationDisplay {
 	private String outputMaterialList;
 	private String outputQtyList;
 	private String descriptionOperation;
-	private String scetchOfOperation;
+	private BufferedImage scetchOfOperation;
 	
 	public String getName() {
 		return name;
@@ -59,11 +61,11 @@ public class MfgOperationDisplay {
 	public void setDescriptionOperation(String descriptionOperation) {
 		this.descriptionOperation = descriptionOperation;
 	}
-	public String getScetchOfOperation() {
+	public BufferedImage getScetchOfOperation() {
 		return scetchOfOperation;
 	}
-	public void setScetchOfOperation(String scetchOfOperation) {
-		this.scetchOfOperation = scetchOfOperation;
+	public void setScetchOfOperation(BufferedImage bufferedImage) {
+		this.scetchOfOperation = bufferedImage;
 	}
 	
 

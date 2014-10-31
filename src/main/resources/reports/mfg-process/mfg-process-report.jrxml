@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
-<!-- 2014-10-20T19:30:29 -->
+<!-- 2014-10-31T17:21:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mfg-process" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5f5835b1-2afc-4637-b714-8789adf84697">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="LogoImage" class="java.awt.image.BufferedImage">
@@ -43,7 +43,7 @@
 	<field name="descriptionOperation" class="java.lang.String">
 		<fieldDescription><![CDATA[descriptionOperation]]></fieldDescription>
 	</field>
-	<field name="scetchOfOperation" class="java.lang.String">
+	<field name="scetchOfOperation" class="java.awt.image.BufferedImage">
 		<fieldDescription><![CDATA[scetchOfOperation]]></fieldDescription>
 	</field>
 	<field name="inputCodeList" class="java.lang.String">
@@ -478,9 +478,9 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				<textFieldExpression><![CDATA[$F{descriptionOperation}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="33" splitType="Prevent">
+		<band height="71" splitType="Prevent">
 			<rectangle>
-				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="3" width="555" height="30" uuid="2f2e5d98-f666-4035-aed8-88df41f2c4b0">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="3" width="555" height="67" uuid="2f2e5d98-f666-4035-aed8-88df41f2c4b0">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -488,16 +488,6 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="3" y="17" width="548" height="15" uuid="1aa35cf6-07b9-4c32-966f-f68fbcbb90bd">
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Justified">
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{scetchOfOperation}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="3" y="6" width="188" height="12" uuid="de407c7b-d843-497a-9700-41c20bf8cae6">
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -508,6 +498,21 @@ CNPJ: 43.799.295/0001-10    IE: 109.095.380.110]]></text>
 				</textElement>
 				<text><![CDATA[CROQUI DA OPERAÇÃO]]></text>
 			</staticText>
+			<image scaleImage="RealHeight" vAlign="Middle">
+				<reportElement x="5" y="25" width="549" height="35" uuid="3d1e5db4-7f25-4b84-9e9d-afe240efad44"/>
+				<imageExpression><![CDATA[$F{scetchOfOperation}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement positionType="Float" mode="Transparent" x="13" y="63" width="500" height="5" uuid="9d82bda6-2e17-430f-9898-c9a67ea77a32">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
 		</band>
 		<band height="48" splitType="Prevent">
 			<rectangle>
