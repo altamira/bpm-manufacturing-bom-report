@@ -1,16 +1,12 @@
 package bpm.manufacturing.bom.report;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Base64.Decoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -18,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import sun.misc.BASE64Decoder;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -83,10 +78,6 @@ public class MfgProcessReport extends ReportConfig {
 			String outputQtyList = "";
 			String descriptionOperation = mfgOperations.get(i).getDescription();
 			
-			//CALCULATION FOR SKETCH IMAGE
-			
-			String scetchOfOperation = mfgOperations.get(i).getSketch();
-			
             mfgInput = mfgOperations.get(i).getConsume();
 
     		for (int j = 0; j < mfgInput.size(); j++) {
@@ -119,7 +110,7 @@ public class MfgProcessReport extends ReportConfig {
     		MfgOperationDisplay dataBean = new MfgOperationDisplay();
 			dataBean.setName(operationName);
 			dataBean.setDescriptionOperation(descriptionOperation);
-			dataBean.setScetchOfOperation(this.decodeToImage(mfgOperations.get(i).getSketch()));
+			dataBean.setScetchOfOperation(decodeToImage(mfgOperations.get(i).getSketch()));
 			dataBean.setInputCodeList(inputCodeList);
 			dataBean.setInputMaterialList(inputMaterialList);
 			dataBean.setInputQtyList(inputQtyList);
@@ -154,26 +145,5 @@ public class MfgProcessReport extends ReportConfig {
     	}
 		return null;
 	}
-	
-	/**
-     * Decode string to image
-     * @param imageString The string to decode
-     * @return decoded image
-     */
-    public static BufferedImage decodeToImage(String imageString) {
-
-        BufferedImage image = null;
-        byte[] imageByte;
-        try {
-            BASE64Decoder decoder = new BASE64Decoder();
-            imageByte = decoder.decodeBuffer(imageString);
-            ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
-            image = ImageIO.read(bis);
-            bis.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
 
 }
