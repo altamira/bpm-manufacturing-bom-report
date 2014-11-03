@@ -24,7 +24,7 @@ public class MfgOrderReport extends ReportConfig {
 	public MfgOrderDataBean getData(String code) {
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget webTarget = client.target("http://localhost:8081/bpm-manufacturing-bom-report/mfg-order.json");
+		WebTarget webTarget = client.target("http://localhost:8080/bpm-manufacturing-bom-report/mfg-order.json");
 		MfgOrderDataBean mfgOrderData = webTarget.path("").request(MediaType.APPLICATION_JSON).get(MfgOrderDataBean.class);
 		return mfgOrderData;
 	}
