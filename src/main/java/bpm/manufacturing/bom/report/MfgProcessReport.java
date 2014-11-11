@@ -110,7 +110,7 @@ public class MfgProcessReport extends ReportConfig {
     		MfgOperationDisplay dataBean = new MfgOperationDisplay();
 			dataBean.setName(operationName);
 			dataBean.setDescriptionOperation(descriptionOperation);
-			dataBean.setScetchOfOperation(decodeToImage(mfgOperations.get(i).getSketch()));
+			dataBean.setScetchOfOperation(decodeToImage(mfgOperations.get(i).getSketch().getImage()));
 			dataBean.setInputCodeList(inputCodeList);
 			dataBean.setInputMaterialList(inputMaterialList);
 			dataBean.setInputQtyList(inputQtyList);
