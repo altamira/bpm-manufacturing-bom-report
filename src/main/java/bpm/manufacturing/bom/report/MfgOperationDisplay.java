@@ -10,6 +10,9 @@ public class MfgOperationDisplay {
 	private String outputCodeList;
 	private String outputMaterialList;
 	private String outputQtyList;
+	private String useCodeList;
+	private String useMaterialList;
+	private String useQtyList;
 	private String descriptionOperation;
 	private BufferedImage scetchOfOperation;
 	
@@ -66,6 +69,24 @@ public class MfgOperationDisplay {
 	}
 	public void setScetchOfOperation(BufferedImage bufferedImage) {
 		this.scetchOfOperation = bufferedImage;
+	}
+	public String getUseCodeList() {
+		return useCodeList;
+	}
+	public void setUseCodeList(String useCodeList) {
+		this.useCodeList = useCodeList;
+	}
+	public String getUseMaterialList() {
+		return useMaterialList;
+	}
+	public void setUseMaterialList(String useMaterialList) {
+		this.useMaterialList = useMaterialList;
+	}
+	public String getUseQtyList() {
+		return useQtyList;
+	}
+	public void setUseQtyList(String useQtyList) {
+		this.useQtyList = useQtyList;
 	}
 	
 

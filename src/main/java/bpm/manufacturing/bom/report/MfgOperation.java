@@ -8,6 +8,7 @@ public class MfgOperation {
 	private String description;
 	private List<MfgMaterial> consume;
 	private List<MfgMaterial> produce;
+	private List<MfgMaterial> use;
 	private SketchDataBean sketch;
 	
 	public int getSequence() {
@@ -45,6 +46,12 @@ public class MfgOperation {
 	}
 	public void setProduce(List<MfgMaterial> produce) {
 		this.produce = produce;
+	}
+	public List<MfgMaterial> getUse() {
+		return use;
+	}
+	public void setUse(List<MfgMaterial> use) {
+		this.use = use;
 	}
 
 }

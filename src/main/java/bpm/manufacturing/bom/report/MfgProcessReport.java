@@ -76,6 +76,9 @@ public class MfgProcessReport extends ReportConfig {
 			String outputCodeList = "";
 			String outputMaterialList = "";
 			String outputQtyList = "";
+			String useCodeList = "";
+			String useMaterialList = "";
+			String useQtyList = "";
 			String descriptionOperation = mfgOperations.get(i).getDescription();
 			
             mfgInput = mfgOperations.get(i).getConsume();
@@ -105,6 +108,19 @@ public class MfgProcessReport extends ReportConfig {
     			
             }
     		
+    		List<MfgMaterial> mfgUse = mfgOperations.get(i).getUse();
+    		for (int j = 0; j < mfgUse.size(); j++) {
+    			String newLineText = "\r\n";
+    			if(j == (mfgUse.size() - 1)) {
+    				newLineText = "";
+    			}
+    			String qtyText = mfgUse.get(j).getQuantity() + " " + mfgUse.get(j).getUnit();
+    			useCodeList = useCodeList + mfgUse.get(j).getCode()  + newLineText;
+    			useMaterialList = useMaterialList + mfgUse.get(j).getDescription()  + newLineText;
+    			useQtyList = useQtyList + qtyText  + newLineText;
+    			
+            }
+    		
     		//CREATE AND ADD THE OBJECT FOR MFG OPERATION DATA LIST
     		//CREATE THE OBJECT
     		MfgOperationDisplay dataBean = new MfgOperationDisplay();
@@ -117,6 +133,9 @@ public class MfgProcessReport extends ReportConfig {
 			dataBean.setOutputCodeList(outputCodeList);
 			dataBean.setOutputMaterialList(outputMaterialList);
 			dataBean.setOutputQtyList(outputQtyList);
+			dataBean.setUseCodeList(useCodeList);
+			dataBean.setUseMaterialList(useMaterialList);
+			dataBean.setUseQtyList(useQtyList);
 
 			//ADD THE OBJECT TO DATALIST
 			dataList.add(dataBean);	
