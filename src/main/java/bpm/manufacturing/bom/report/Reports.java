@@ -5,10 +5,12 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Size;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
@@ -17,7 +19,7 @@ import javax.ws.rs.core.Response;
  */
 
 @Path("manufacturing")
-public class Reports {
+public class Reports  extends ReportConfig{
 	
 	/**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -172,8 +174,18 @@ public class Reports {
      */
 	@GET @Path("/process/{id}")
     @Produces("application/pdf") 
-    public  Response manufacturingProcess(@Context HttpServletRequest req, @Context HttpServletResponse resp, @PathParam("id") String id) throws ServletException, IOException {
-	
+    public  Response manufacturingProcess(
+    		@Context HttpServletRequest req, 
+    		@Context HttpServletResponse resp, 
+    		@PathParam("id") String id,
+    		@Size(min = 2) @QueryParam("token") String token)
+    				throws ServletException, IOException {
+		
+		Response checkAuthResponse = checkAuth(token);
+		//CHECK FOR ERROR RESPONSE
+		if (checkAuthResponse.getStatus() != 200) {
+	        return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid Token: " + token).build();
+		}
 		MfgProcessReport mfgProcessReport = new MfgProcessReport();
 		return mfgProcessReport.getReport(id);	
 		

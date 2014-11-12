@@ -5,28 +5,64 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.client.ClientResponse;
 
 import sun.misc.BASE64Decoder;
 
 public abstract class ReportConfig {
+
+	/**
+	 *
+	 */
+	public static final String AUTH_URL = "http://localhost:8080/security-oauth2/auth/authz";
 	
 	/**
-     * Get the logo image
-     * @param 
-     * @return buffered logo image
-     */
+	 * Check the Auth Token
+	 * @param String
+	 * @return 
+	 */
+	public Response checkAuth(String token) {
+		Response response = null;
+
+		try {
+			String url = AUTH_URL + "?token=" + token;
+			Client client = ClientBuilder.newClient();
+			WebTarget webTarget = client.target(url);
+			Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+			response = invocationBuilder.get();
+			return response;
+		} catch (Exception e) {            
+			System.out.println(e.getMessage());
+			
+		}
+		return response;
+	}
+
+
+	/**
+	 * Get the logo image
+	 * @param 
+	 * @return buffered logo image
+	 */
 	public BufferedImage getLogo() {
 		//GET THE LOGO FILE FROM RESOURCE
 		InputStream reportLogo = getClass().getResourceAsStream("/images/report-header-logo.png");
-		
-		 BufferedImage imfg = null;
-		 try {
-		     //InputStream in = new ByteArrayInputStream(requestReportAltamiraimage);
-		     imfg = ImageIO.read(reportLogo);
-		 } catch (Exception e1) {
-		     e1.printStackTrace();
-		 }
-		 return imfg;
+
+		BufferedImage imfg = null;
+		try {
+			//InputStream in = new ByteArrayInputStream(requestReportAltamiraimage);
+			imfg = ImageIO.read(reportLogo);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return imfg;
 	}
 	
 	/**
