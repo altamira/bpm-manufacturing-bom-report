@@ -44,7 +44,7 @@ public class MfgProcessReport extends ReportConfig {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		//SET THE PARAMETERS
 		parameters.put("Title", "Processo de Fabricação");
-     	parameters.put("UserName", "MASTER");
+     	parameters.put("UserName", ReportConfig.userName);
      	parameters.put("Code", mfgReportData.getCode());
      	parameters.put("Description", mfgReportData.getDescription());
      	parameters.put("Color", mfgReportData.getColor());

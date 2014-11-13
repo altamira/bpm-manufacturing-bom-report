@@ -17,6 +17,11 @@ import org.glassfish.jersey.client.ClientResponse;
 import sun.misc.BASE64Decoder;
 
 public abstract class ReportConfig {
+	
+	/**
+	 *
+	 */
+	public static String userName = "";
 
 	/**
 	 *
@@ -37,6 +42,8 @@ public abstract class ReportConfig {
 			WebTarget webTarget = client.target(url);
 			Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 			response = invocationBuilder.get();
+			AuthTokenChkRespDataBean authTokenData  = response.readEntity(AuthTokenChkRespDataBean.class);
+			userName = authTokenData.getUser_name();
 			return response;
 		} catch (Exception e) {            
 			System.out.println(e.getMessage());

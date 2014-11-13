@@ -15,6 +15,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -86,7 +87,7 @@ public class ServiceOrderPaintingReport extends ReportConfig {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		//SET THE PARAMETERS FOR JASPER REPORT
         parameters.put("Title", "Ordem de Serviço (Pintura)");
-     	parameters.put("UserName", "MASTER");
+     	parameters.put("UserName", ReportConfig.userName);
      	parameters.put("Customer", reportData.getCustomer());
      	parameters.put("Representative", reportData.getRepresentative());
      	parameters.put("OrderID", reportData.getNumber());
