@@ -43,7 +43,7 @@ public abstract class ReportConfig {
 			Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 			response = invocationBuilder.get();
 			AuthTokenChkRespDataBean authTokenData  = response.readEntity(AuthTokenChkRespDataBean.class);
-			userName = authTokenData.getUser_name();
+			userName = authTokenData.getUserName();
 			return response;
 		} catch (Exception e) {            
 			System.out.println(e.getMessage());

@@ -1,40 +1,42 @@
 package bpm.manufacturing.bom.report;
 
 public class AuthTokenChkRespDataBean {
-	private String access_token;
-	private String user_name;
-	private String last_name;
-	private String loggedin_since;
-	private String first_name;
+	private String accessToken;
+	private String userName;
+	private String lastName;
+	private String loggedinSince;
+	private String firstName;
 	
-	public String getAccess_token() {
-		return access_token;
+	public String getAccessToken() {
+		return accessToken;
 	}
-	public void setAccess_token(String access_token) {
-		this.access_token = access_token;
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getLoggedin_since() {
-		return loggedin_since;
+	public String getLoggedinSince() {
+		return loggedinSince;
 	}
-	public void setLoggedin_since(String loggedin_since) {
-		this.loggedin_since = loggedin_since;
+	public void setLoggedinSince(String loggedinSince) {
+		this.loggedinSince = loggedinSince;
 	}
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
+	
+	
 }
