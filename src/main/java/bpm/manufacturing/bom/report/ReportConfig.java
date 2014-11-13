@@ -25,8 +25,8 @@ public abstract class ReportConfig {
 	
 	/**
 	 * Check the Auth Token
-	 * @param String
-	 * @return 
+	 * @param Token String
+	 * @return Response
 	 */
 	public Response checkAuth(String token) {
 		Response response = null;
